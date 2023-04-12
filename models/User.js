@@ -43,7 +43,7 @@ class User {
 	}
 
 	static findById(id) {
-		let sql = `SELECT * FROM users WHERE id=${id}`
+		let sql = `SELECT * FROM user WHERE id=${id}`
 		return db.execute(sql);
 	}
 }
