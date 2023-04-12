@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const user_surveyController = require('../controllers/User_surveyController');
+const user_surveyController = require('../controllers/user_surveyController');
 
 router.route("/")
 // .get(surveyController.getAllSurveys)

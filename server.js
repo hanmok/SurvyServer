@@ -7,6 +7,7 @@ const app = express();
 const userRoute = require("./routes/userRoute");
 const surveyRoute = require('./routes/surveyRoute');
 const user_surveyRoute = require('./routes/user_surveysRoute');
+const tagRoute = require('./routes/tagRoute');
 // Middleware
 app.use(express.json()); // parse json bodies in the request object
 
@@ -14,7 +15,8 @@ app.use(express.json()); // parse json bodies in the request object
 // app.use("/posts", require("./routes/postRoute"));
 app.use('/users', userRoute);
 app.use('/surveys', surveyRoute);
-app.use('/user_survey', user_surveyRoute);
+app.use('/user_surveys', user_surveyRoute);
+app.use('/tags', tagRoute);
 // Global Error Handler. IMPORTANT function params MUST start with err
 app.use((err, req, res, next) => {
   console.log(err.stack);
