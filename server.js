@@ -10,6 +10,11 @@ const user_surveyRoute = require('./routes/user_surveysRoute');
 const tagRoute = require('./routes/tagRoute');
 const user_tagRoute = require('./routes/user_tagRoute')
 const survey_tagRoute = require('./routes/survey_tagRoute');
+const questionTypeRoute = require('./routes/questionOptionRoute')
+const questionOptionRoute = require('./routes/questionOptionRoute');
+const sectionRoute = require('./routes/sectionRoute');
+const responseRoute = require('./routes/responseRoute');
+const questionRoute = require('./routes/questionRoute');
 // Middleware
 app.use(express.json()); // parse json bodies in the request object
 
@@ -21,6 +26,12 @@ app.use('/user_surveys', user_surveyRoute);
 app.use('/user_tags', user_tagRoute);
 app.use('/survey_tags', survey_tagRoute);
 app.use('/tags', tagRoute);
+app.use('/questionTypes', questionTypeRoute);
+app.use('/questionOptions', questionOptionRoute);
+app.use('/sections', sectionRoute);
+app.use('/responses', responseRoute);
+app.use('/questions', questionRoute);
+
 
 // app.use
 // Global Error Handler. IMPORTANT function params MUST start with err
