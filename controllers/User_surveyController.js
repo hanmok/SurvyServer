@@ -22,14 +22,14 @@ exports.createUser_survey = async(req, res, next) => {
 	}
 }
 
-exports.getByUserId = async(req, res, next) => { 
-	try { 
-		let user_id = req.params.user_id;
-		let [surveys, _] = await User_survey.findByUserId(user_id);
-		res.status(200).json({surveys: surveys[0]});
-	} catch (error) { 
-		console.log(error);
-		next(error);
-	}
-}
+// exports.getByUserId = async(req, res, next) => { 
+// 	try { 
+// 		let user_id = req.params.user_id;
+// 		let [surveys, _] = await User_survey.findByUserId(user_id);
+// 		res.status(200).json({surveys: surveys[0]});
+// 	} catch (error) { 
+// 		console.log(error);
+// 		next(error);
+// 	}
+// }
 

@@ -1,7 +1,8 @@
 const db = require('../config/db');
 
 class QuestionType { 
-	constructor(description) { 
+	constructor(id, description) { 
+		this.id = id
 		this.description = description
 	}
 
@@ -11,7 +12,7 @@ class QuestionType {
 			description
 		)
 		VALUES(
-			'${this.description}
+			'${this.description}'
 		)`;
 		return db.execute(sql);
 	}

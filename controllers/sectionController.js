@@ -22,3 +22,15 @@ exports.getSectionById = async (req, res, next) => {
 		next(error);
 	}
 }
+
+
+
+exports.getAllSections = async (req, res, next) => { 
+	try { 
+		const [sections, _] = await Section.findAll();
+		res.status(200).json({count: sections.length, sections});
+	} catch (error) { 
+		console.log(error);
+		next(error);
+	}
+};

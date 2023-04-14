@@ -6,7 +6,7 @@ const router = express.Router();
 router.route("/")
 .post(questionOptionController.createQuestionOption);
 
-router.route("/:id")
-.get(questionOptionController.getQuestionOptionById);
+// router.route("/:id")
+// .get(questionOptionController.getQuestionOptionById);
 
 module.exports = router;

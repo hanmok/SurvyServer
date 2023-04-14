@@ -7,7 +7,7 @@ router.route("/")
 .get(user_surveyController.getAllUser_surveys)
 .post(user_surveyController.createUser_survey);
 
-router.route("/:user_id")
-.get(user_surveyController.getByUserId);
+// router.route("/:user_id")
+// .get(user_surveyController.getByUserId);
 
 module.exports = router;

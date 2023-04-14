@@ -1,8 +1,8 @@
 const db = require('../config/db');
 
 class Question { 
-	constructor(question_type_id, section_id, position, text) { 
-		this.question_type_id = question_type_id;
+	constructor(questionType_id, section_id, position, text) { 
+		this.questionType_id = questionType_id;
 		this.section_id = section_id;
 		this.position = position;
 		this.text = text;
@@ -11,13 +11,13 @@ class Question {
 	async save() { 
 		let sql = `
 		INSERT INTO Question(
-			question_type_id,
+			questionType_id,
 			section_id,
 			position,
 			text
 		)
 		VALUES(
-			'${this.question_type_id}',
+			'${this.questionType_id}',
 			'${this.section_id}',
 			'${this.position}',
 			'${this.text}'

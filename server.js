@@ -4,22 +4,28 @@ require("dotenv").config(); // ALLOWS ENVIRONMENT VARIABLES TO BE SET ON PROCESS
 
 const express = require("express");
 const app = express();
+
+
 const userRoute = require("./routes/userRoute");
 const surveyRoute = require('./routes/surveyRoute');
 const user_surveyRoute = require('./routes/user_surveysRoute');
 const tagRoute = require('./routes/tagRoute');
 const user_tagRoute = require('./routes/user_tagRoute')
 const survey_tagRoute = require('./routes/survey_tagRoute');
-const questionTypeRoute = require('./routes/questionOptionRoute')
+const questionTypeRoute = require('./routes/questionTypeRoute');
 const questionOptionRoute = require('./routes/questionOptionRoute');
 const sectionRoute = require('./routes/sectionRoute');
-const responseRoute = require('./routes/responseRoute');
+
 const questionRoute = require('./routes/questionRoute');
+const oneAnswerRoute = require('./routes/oneAnswerRoute');
+const oneQuestionRoute = require('./routes/oneQuestionRoute');
+const answerRoute = require('./routes/answerRoute');
+const sectionBridgeRoute = require('./routes/sectionBridgeRoute');
+const question_questionOptionRoute = require('./routes/question_questionOptionRoute');
 // Middleware
 app.use(express.json()); // parse json bodies in the request object
 
 // Redirect requests to endpoint starting with /posts to postRoutes.js
-// app.use("/posts", require("./routes/postRoute"));
 app.use('/users', userRoute);
 app.use('/surveys', surveyRoute);
 app.use('/user_surveys', user_surveyRoute);
@@ -29,9 +35,12 @@ app.use('/tags', tagRoute);
 app.use('/questionTypes', questionTypeRoute);
 app.use('/questionOptions', questionOptionRoute);
 app.use('/sections', sectionRoute);
-app.use('/responses', responseRoute);
 app.use('/questions', questionRoute);
-
+app.use('/oneAnswers', oneAnswerRoute);
+app.use('/oneQuestions', oneQuestionRoute);
+app.use('/answers', answerRoute);
+app.use('/sectionBridges', sectionBridgeRoute);
+app.use('/question_questionOptions', question_questionOptionRoute);
 
 // app.use
 // Global Error Handler. IMPORTANT function params MUST start with err
