@@ -24,10 +24,10 @@ class Survey_tag {
 		return db.execute(sql);
 	}
 
-	static findByTagId(tag_id) { 
-		let sql = `SELECT * FROM Survey_tag WHERE tag_id=${tag_id}`;
-		return db.execute(sql);
-	}
+	// static findByTagId(tag_id) { 
+	// 	let sql = `SELECT * FROM Survey_tag WHERE tag_id=${tag_id}`;
+	// 	return db.execute(sql);
+	// }
 	// static findBySurveyId(survey_id) { 
 	// 	let sql = `SELECT * FROM User_survey WHERE survey_id=${survey_id}`;
 	// 	return db.execute(sql);

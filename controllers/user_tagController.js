@@ -22,15 +22,3 @@ exports.createUser_tag = async(req, res, next) => {
 		next(error);
 	}
 }
-
-exports.getByUserId = async(req, res, next) => { 
-	try { 
-		let user_id = req.params.user_id;
-		let [tags, _] = await User_tag.findByUserId(user_id);
-		res.status(200).json({tags: tags[0]});
-	} catch (error) { 
-		console.log(error);
-		next(error);
-	}
-}
-

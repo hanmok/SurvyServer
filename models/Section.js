@@ -1,24 +1,20 @@
 const db = require('../config/db');
 
 class Section { 
-	reward = 100;
-	constructor(survey_id, expectedTimeInMin) { 
+	constructor(title, survey_id) { 
+		this.title = title;
 		this.survey_id = survey_id;
-		this.expectedTimeInMin = expectedTimeInMin;
-		this.reward = expectedTimeInMin * 100;
 	}
 
 	async save() { 
 		let sql = `
 		INSERT INTO Section(
-			survey_id,
-			expectedTimeInMin,
-			reward
+			title,
+			survey_id
 		)
 		VALUES(
-			'${this.survey_id}',
-			'${this.expectedTimeInMin}',
-			'${this.expectedTimeInMin * 100}' 
+			'${this.title}',
+			'${this.survey_id}'
 		)`;
 		return db.execute(sql);
 	}

@@ -6,7 +6,4 @@ router.route("/")
 .get(user_tagController.getAllUser_tags)
 .post(user_tagController.createUser_tag);
 
-router.route("/:user_id")
-.get(user_tagController.getByUserId);
-
 module.exports = router;

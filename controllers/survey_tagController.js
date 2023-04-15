@@ -21,15 +21,3 @@ exports.createSurvey_tag = async(req, res, next) => {
 		next(error);
 	}
 }
-
-exports.getByTagId = async(req, res, next) => { 
-	try { 
-		let tag_id = req.params.tag_id;
-		let [surveys, _] = await Survey_tag.findByTagId(tag_id);
-		res.status(200).json({surveys: surveys[0]});
-	} catch (error) { 
-		console.log(error);
-		next(error);
-	}
-}
-

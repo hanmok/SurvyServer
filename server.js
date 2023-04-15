@@ -13,12 +13,10 @@ const tagRoute = require('./routes/tagRoute');
 const user_tagRoute = require('./routes/user_tagRoute')
 const survey_tagRoute = require('./routes/survey_tagRoute');
 const questionTypeRoute = require('./routes/questionTypeRoute');
-const questionOptionRoute = require('./routes/questionOptionRoute');
+const selectableOptionRoute = require('./routes/selectableOptionRoute');
 const sectionRoute = require('./routes/sectionRoute');
 
 const questionRoute = require('./routes/questionRoute');
-const oneAnswerRoute = require('./routes/oneAnswerRoute');
-const oneQuestionRoute = require('./routes/oneQuestionRoute');
 const answerRoute = require('./routes/answerRoute');
 const sectionBridgeRoute = require('./routes/sectionBridgeRoute');
 const question_questionOptionRoute = require('./routes/question_questionOptionRoute');
@@ -33,11 +31,9 @@ app.use('/user_tags', user_tagRoute);
 app.use('/survey_tags', survey_tagRoute);
 app.use('/tags', tagRoute);
 app.use('/questionTypes', questionTypeRoute);
-app.use('/questionOptions', questionOptionRoute);
+app.use('/selectableOptions', selectableOptionRoute);
 app.use('/sections', sectionRoute);
 app.use('/questions', questionRoute);
-app.use('/oneAnswers', oneAnswerRoute);
-app.use('/oneQuestions', oneQuestionRoute);
 app.use('/answers', answerRoute);
 app.use('/sectionBridges', sectionBridgeRoute);
 app.use('/question_questionOptions', question_questionOptionRoute);

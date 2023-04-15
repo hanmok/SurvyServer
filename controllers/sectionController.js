@@ -2,8 +2,10 @@ const Section = require('../models/Section');
 
 exports.createSection = async (req, res, next) => { 
 	try { 
-		let {survey_id, expectedTimeInMin} = req.body;
-		let section = new Section(survey_id, expectedTimeInMin);
+		// let {survey_id, expectedTimeInMin} = req.body;
+		let {title, survey_id} = req.body;
+		// let section = new Section(survey_id, expectedTimeInMin);
+		let section = new Section(title, survey_id);
 		section = await section.save();
 		res.status(201).json({message: "Section created"});
 	} catch (error) { 
@@ -22,8 +24,6 @@ exports.getSectionById = async (req, res, next) => {
 		next(error);
 	}
 }
-
-
 
 exports.getAllSections = async (req, res, next) => { 
 	try { 

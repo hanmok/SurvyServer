@@ -23,11 +23,6 @@ class User_tag {
 		let sql = `SELECT * FROM User_tag`;
 		return db.execute(sql);
 	}
-
-	static findByUserId(user_id) { 
-		let sql = `SELECT * FROM User_tag WHERE user_id=${user_id}`;
-		return db.execute(sql);
-	}
 }
 
 module.exports = User_tag;

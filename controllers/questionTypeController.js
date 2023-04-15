@@ -1,9 +1,9 @@
-const questionType = require('../models/QuestionType');
+const QuestionType = require('../models/QuestionType');
 
 exports.createQuestionType = async (req, res, next) => { 
 	try { 
-		let {description} = req.body;
-		let questionType = new questionType(description);
+		let {id, description} = req.body;
+		let questionType = new QuestionType(id, description);
 		questionType = await questionType.save();
 		res.status(201).json({message: "QuestionType created"});
 	} catch (error) {
@@ -14,7 +14,7 @@ exports.createQuestionType = async (req, res, next) => {
 
 exports.getAllQuestionTypes = async (req, res, next) => { 
 	try { 
-		const [questionTypes, _] = await questionType.findAll();
+		const [questionTypes, _] = await QuestionType.findAll();
 		res.status(200).json({count: questionTypes.length, questionTypes});
 	} catch (error) { 
 		console.log(error);

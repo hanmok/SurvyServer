@@ -12,8 +12,8 @@ exports.getAllAnswers = async (req, res, next) => {
 
 exports.createAnswer = async (req, res, next) => { 
 	try { 
-		let {question_id, user_id, answer_text, timeTookInSec} = req.body;
-		let answer = new Answer(question_id, user_id, answer_text, timeTookInSec);
+		let {question_id, user_id, selectableOption_id, textAnswer, timeTookInSec} = req.body;
+		let answer = new Answer(question_id, user_id, selectableOption_id, textAnswer, timeTookInSec);
 		answer = await answer.save();
 		res.status(201).json({message: "Answer created"});
 	} catch (error) { 
