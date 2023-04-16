@@ -1,4 +1,4 @@
-const SectionBridge = require('../models/sectionBridge');
+const SectionBridge = require('../models/SectionBridge');
 
 
 exports.getAllSectionBridges = async (req, res, next) => { 
@@ -13,9 +13,8 @@ exports.getAllSectionBridges = async (req, res, next) => {
 
 exports.createSectionBridge = async (req, res, next) => { 
 	try { 
-		// let {username, password, age, isMale} = req.body;
-		let {current_id, next_id, question_id, separation_answer_index} = req.body;
-		let sectionBridge = new SectionBridge(current_id, next_id, question_id, separation_answer_index);
+		let {current_id, next_id, question_id, selectableOption_id} = req.body;
+		let sectionBridge = new SectionBridge(current_id, next_id, question_id, selectableOption_id);
 		sectionBridge = await sectionBridge.save();
 		res.status(201).json({message: "sectionBridge created"});
 	} catch (error) { 

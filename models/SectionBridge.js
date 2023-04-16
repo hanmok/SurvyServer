@@ -2,11 +2,11 @@
 const db = require('../config/db');
 
 class SectionBridge { 
-	constructor(current_id, next_id, question_id, separation_answer_index) { 
+	constructor(current_id, next_id, question_id, selectableOption_id) { 
 		this.current_id = current_id;
 		this.next_id = next_id;
 		this.question_id = question_id;
-		this.separation_answer_index = separation_answer_index;
+		this.selectableOption_id = selectableOption_id;
 	}
 
 	async save() { 
@@ -15,13 +15,13 @@ class SectionBridge {
 			current_id,
 			next_id,
 			question_id,
-			separation_answer_index
+			selectableOption_id
 			)
 		VALUES(
 			'${this.current_id}',
 			'${this.next_id}',
 			'${this.question_id}',
-			'${this.separation_answer_index}'
+			'${this.selectableOption_id}'
 		)`;
 		return db.execute(sql);
 	}

@@ -44,7 +44,7 @@ app.use((err, req, res, next) => {
   console.log(err.stack);
   console.log(err.name);
   console.log(err.code);
-
+  console.log("trapped by error middleware")
   res.status(500).json({
     message: "Something went really wrong",
   });

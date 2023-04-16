@@ -19,3 +19,6 @@ const pool = mysql.createPool({
 // });
 
 module.exports = pool.promise();
+// pool.execute(sql)
+// or 
+// pool.query(sql)
