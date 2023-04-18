@@ -33,5 +33,17 @@ class Survey_tag {
         let sql = `SELECT * FROM Survey_tag`;
         return db.execute(sql);
     }
+    // static findByTagId(tag_id) { 
+    // 	let sql = `SELECT * FROM Survey_tag WHERE tag_id=${tag_id}`;
+    // 	return db.execute(sql);
+    // }
+    static findTagsBySurveyId(survey_id) {
+        let sql = `SELECT * FROM Survey_tag WHERE survey_id=${survey_id}`; // 바뀌어야함. 
+        return db.execute(sql);
+    }
+    static findSurveysByTagId(tag_id) {
+        let sql = `SELECT * FROM Survey_tag WHERE tag_id=${tag_id}`;
+        return db.execute(sql);
+    }
 }
 module.exports = Survey_tag;

@@ -32,9 +32,21 @@ exports.getSurveysByUserId = (req, res, next) => __awaiter(void 0, void 0, void 
         next(error);
     }
 });
+exports.getUserBySurveyId = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        let survey_id = req.params.survey_id;
+        let [user, _] = yield User_survey.findBySurveyId(survey_id);
+        res.status(200).json({ user });
+    }
+    catch (error) {
+        console.log(error);
+        next(error);
+    }
+});
 exports.createUser_survey = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        let { user_id, survey_id } = req.body;
+        // let {user_id, survey_id} = req.body;
+        let { user_id, survey_id } = req.params;
         let user_survey = new User_survey(user_id, survey_id);
         user_survey = yield user_survey.save();
         res.status(201).json({ message: "user_survey created" });

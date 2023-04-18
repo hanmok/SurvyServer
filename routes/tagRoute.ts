@@ -2,6 +2,8 @@
 const express = require('express');
 const tagController = require('../controllers/tagController');
 const userTagController = require('../controllers/user_tagController');
+const survey_tagController = require('../controllers/survey_tagController');
+
 const router = express.Router();
 
 router.route("/")
@@ -13,6 +15,9 @@ router.route('/:id')
 
 router.route('/:tag_id/users')
 .get(userTagController.getUsersByTagId);
+
+router.route('/:tag_id/surveys')
+.get(survey_tagController.getSurveysByTagId);
 
 module.exports = router;
 

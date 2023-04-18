@@ -32,3 +32,26 @@ exports.createSurvey_tag = (req, res, next) => __awaiter(void 0, void 0, void 0,
         next(error);
     }
 });
+exports.getTagsBySurveyId = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        let survey_id = req.params.survey_id;
+        let [tags, _] = yield Survey_tag.findTagsBySurveyId(survey_id);
+        console.log(`tags: ${tags}`);
+        res.status(200).json({ count: tags.length, tags });
+    }
+    catch (error) {
+        console.log(error);
+        next(error);
+    }
+});
+exports.getSurveysByTagId = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        let tag_id = req.params.tag_id;
+        let [surveys, _] = yield Survey_tag.findSurveysByTagId(tag_id);
+        res.status(200).json({ count: surveys.length, surveys });
+    }
+    catch (error) {
+        console.log(error);
+        next(error);
+    }
+});

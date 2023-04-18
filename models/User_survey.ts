@@ -36,10 +36,10 @@ class User_survey {
 	// 	return db.execute(sql);
 	// }
 
-	// static findBySurveyId(survey_id) { 
-	// 	let sql = `SELECT * FROM User_survey WHERE survey_id=${survey_id}`;
-	// 	return db.execute(sql);
-	// }
+	static findBySurveyId(survey_id) { 
+		let sql = `SELECT * FROM User_survey WHERE survey_id=${survey_id}`;
+		return db.execute(sql);
+	}
 }
 
 module.exports = User_survey;
