@@ -1,14 +1,12 @@
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const express = require('express');
 // const userController = require('../controllers/userController');
 const answerController = require('../controllers/answerController');
 const router = express.Router();
-
 router.route("/")
-.get(answerController.getAllAnswers)
-.post(answerController.createAnswer);
-
+    .get(answerController.getAllAnswers)
+    .post(answerController.createAnswer);
 router.route("/:id")
-.get(answerController.getAnswerById);
-
+    .get(answerController.getAnswerById);
 module.exports = router;
