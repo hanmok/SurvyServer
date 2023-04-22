@@ -19,6 +19,9 @@ router.route('/:tag_id/users')
 router.route('/:tag_id/surveys')
 .get(survey_tagController.getSurveysByTagId);
 
+router.route('/tags/:tag_id/surveys/:survey_id')
+.post(survey_tagController.createSurvey_tag);
+
 module.exports = router;
 
 export {};

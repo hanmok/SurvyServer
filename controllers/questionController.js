@@ -12,9 +12,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Question = require('../models/Question');
 exports.createQuestion = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        let { questionType_id, section_id, position, text } = req.body;
+        let { questionType_id, section_id, position, text, expectedTimeInSec } = req.body;
         console.log(`questionType_id: ${questionType_id}`);
-        let question = new Question(questionType_id, section_id, position, text);
+        let question = new Question(questionType_id, section_id, position, text, expectedTimeInSec);
         question = yield question.save();
         res.status(201).json({ message: "Question Created" });
     }

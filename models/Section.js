@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const db = require('../config/db');
 class Section {
     constructor(title, survey_id) {
-        this.title = title;
+        this.title = title !== null && title !== void 0 ? title : "";
         this.survey_id = survey_id;
     }
     save() {

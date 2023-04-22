@@ -9,21 +9,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const User_survey = require('../models/User_survey');
-exports.getAllUser_surveys = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const [user_surveys, _] = yield User_survey.findAll();
-        res.status(200).json({ count: user_surveys.length, user_surveys });
-    }
-    catch (error) {
-        console.log(error);
-        next(error);
-    }
-});
-exports.getSurveysByUserId = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+const Request = require('../models/participate');
+// exports.getAllparticipates = async (req, res, next) => { 
+// 	try { 
+// 		const [participates, _] = await Request.findAll();
+// 		res.status(200).json({count: participates.length, participates});
+// 	} catch (error) {
+// 		console.log(error);
+// 		next(error);
+// 	}
+// }
+exports.getParticipatedSurveysByUserId = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         let user_id = req.params.user_id;
-        let [surveys, _] = yield User_survey.findByUserId(user_id);
+        let [surveys, _] = yield Request.findByUserId(user_id);
         // res.status(200).json({surveys: surveys[0]});
         res.status(200).json({ count: surveys.length, surveys });
     }
@@ -32,10 +31,10 @@ exports.getSurveysByUserId = (req, res, next) => __awaiter(void 0, void 0, void 
         next(error);
     }
 });
-exports.getUserBySurveyId = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+exports.getParticipatedUsersBySurveyId = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         let survey_id = req.params.survey_id;
-        let [user, _] = yield User_survey.findBySurveyId(survey_id);
+        let [user, _] = yield Request.findBySurveyId(survey_id);
         res.status(200).json({ user });
     }
     catch (error) {
@@ -43,13 +42,12 @@ exports.getUserBySurveyId = (req, res, next) => __awaiter(void 0, void 0, void 0
         next(error);
     }
 });
-exports.createUser_survey = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+exports.createparticipate = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        // let {user_id, survey_id} = req.body;
         let { user_id, survey_id } = req.params;
-        let user_survey = new User_survey(user_id, survey_id);
-        user_survey = yield user_survey.save();
-        res.status(201).json({ message: "user_survey created" });
+        let participate = new Request(user_id, survey_id);
+        participate = yield participate.save();
+        res.status(201).json({ message: "participate created" });
     }
     catch (error) {
         console.log(error);

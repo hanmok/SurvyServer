@@ -10,42 +10,36 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const db = require('../config/db');
-class Question {
-    // correctAnswer: number; // TypeScript 먼저 배우기.. 
-    constructor(questionType_id, section_id, position, text, expectedTimeInSec) {
-        this.questionType_id = questionType_id;
-        this.section_id = section_id;
-        this.position = position !== null && position !== void 0 ? position : 1;
-        this.text = text;
-        this.expectedTimeInSec = expectedTimeInSec !== null && expectedTimeInSec !== void 0 ? expectedTimeInSec : 10;
+class Request {
+    constructor(user_id, survey_id) {
+        this.user_id = user_id;
+        this.survey_id = survey_id;
     }
     save() {
         return __awaiter(this, void 0, void 0, function* () {
             let sql = `
-		INSERT INTO Question(
-			questionType_id,
-			section_id,
-			position,
-			text,
-			expectedTimeInSec
-		)
+		INSERT INTO participate(
+			user_id,
+			survey_id
+		) 
 		VALUES(
-			'${this.questionType_id}',
-			'${this.section_id}',
-			'${this.position}',
-			'${this.text}',
-			'${this.expectedTimeInSec}'
+			'${this.user_id}',
+			'${this.survey_id}'
 		)`;
             return db.execute(sql);
         });
     }
     static findAll() {
-        let sql = `SELECT * FROM Question`;
+        let sql = `SELECT * FROM participate`;
         return db.execute(sql);
     }
-    static findById(question_id) {
-        let sql = `SELECT * FROM Question WHERE id=${question_id}`;
+    static findByUserId(user_id) {
+        let sql = `SELECT * FROM participate WHERE user_id=${user_id}`;
+        return db.execute(sql);
+    }
+    static findBySurveyId(survey_id) {
+        let sql = `SELECT * FROM participate WHERE survey_id=${survey_id}`;
         return db.execute(sql);
     }
 }
-module.exports = Question;
+module.exports = Request;

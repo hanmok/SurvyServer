@@ -2,9 +2,9 @@ const Question = require('../models/Question');
 
 exports.createQuestion = async (req, res, next) => { 
 	try { 
-		let {questionType_id, section_id, position, text} = req.body;
+		let {questionType_id, section_id, position, text, expectedTimeInSec} = req.body;
 		console.log(`questionType_id: ${questionType_id}`);
-		let question = new Question(questionType_id, section_id, position, text);
+		let question = new Question(questionType_id, section_id, position, text, expectedTimeInSec);
 		question = await question.save();
 		res.status(201).json({message: "Question Created"});
 	} catch (error) { 

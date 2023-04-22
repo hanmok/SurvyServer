@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const db = require('../config/db');
-class User_survey {
+class Post {
     constructor(user_id, survey_id) {
         this.user_id = user_id;
         this.survey_id = survey_id;
@@ -18,7 +18,7 @@ class User_survey {
     save() {
         return __awaiter(this, void 0, void 0, function* () {
             let sql = `
-		INSERT INTO User_survey(
+		INSERT INTO post(
 			user_id,
 			survey_id
 		) 
@@ -30,20 +30,20 @@ class User_survey {
         });
     }
     static findAll() {
-        let sql = `SELECT * FROM User_survey`;
+        let sql = `SELECT * FROM post`;
         return db.execute(sql);
     }
     static findByUserId(user_id) {
-        let sql = `SELECT * FROM User_survey WHERE user_id=${user_id}`;
+        let sql = `SELECT * FROM post WHERE user_id=${user_id}`;
         return db.execute(sql);
     }
     // static findByUserId(user_id) { 
-    // 	let sql = `SELECT * FROM User_survey WHERE user_id=${user_id}`;
+    // 	let sql = `SELECT * FROM request WHERE user_id=${user_id}`;
     // 	return db.execute(sql);
     // }
     static findBySurveyId(survey_id) {
-        let sql = `SELECT * FROM User_survey WHERE survey_id=${survey_id}`;
+        let sql = `SELECT * FROM post WHERE survey_id=${survey_id}`;
         return db.execute(sql);
     }
 }
-module.exports = User_survey;
+module.exports = Post;

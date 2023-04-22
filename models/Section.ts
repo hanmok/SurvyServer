@@ -4,7 +4,7 @@ class Section {
 	title: string;
 	survey_id: string;
 	constructor(title, survey_id) { 
-		this.title = title;
+		this.title = title ?? "";
 		this.survey_id = survey_id;
 	}
 

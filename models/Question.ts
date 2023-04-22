@@ -5,12 +5,15 @@ class Question {
 	section_id: number;
 	position: number;
 	text: string;
+	expectedTimeInSec: number;
+	// correctAnswer: number; // TypeScript 먼저 배우기.. 
 
-	constructor(questionType_id, section_id, position, text) { 
+	constructor(questionType_id, section_id, position, text, expectedTimeInSec) { 
 		this.questionType_id = questionType_id;
 		this.section_id = section_id;
-		this.position = position;
+		this.position = position ?? 1;
 		this.text = text;
+		this.expectedTimeInSec = expectedTimeInSec ?? 10;
 	}
 
 	async save() { 
@@ -19,13 +22,15 @@ class Question {
 			questionType_id,
 			section_id,
 			position,
-			text
+			text,
+			expectedTimeInSec
 		)
 		VALUES(
 			'${this.questionType_id}',
 			'${this.section_id}',
 			'${this.position}',
-			'${this.text}'
+			'${this.text}',
+			'${this.expectedTimeInSec}'
 		)`;
 		return db.execute(sql);
 	}	

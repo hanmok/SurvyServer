@@ -2,7 +2,8 @@
 const express = require('express');
 const userController = require('../controllers/userController');
 const user_tagController = require('../controllers/user_tagController');
-const user_surveyController = require('../controllers/user_surveyController');
+const postController = require('../controllers/postController');
+const participateController = require('../controllers/participateController');
 const router = express.Router();
 
 router.route("/")
@@ -19,12 +20,27 @@ router.route("/:user_id/tags")
 router.route("/:user_id/tags/:tag_id")
 .post(user_tagController.createUser_tag);
 
-// Surveys
-router.route('/:user_id/surveys')
-.get(user_surveyController.getSurveysByUserId);
+// posted Surveys
+router.route('/:user_id/posted-surveys')
+.get(postController.getPostedSurveysByUserId);
 
-router.route('/:user_id/surveys/:survey_id')  
-.post(user_surveyController.createUser_survey); 
+router.route('/posted-survey')  
+.post(postController.create_post); 
+
+// Joined surveys
+// router.route('/:user_id/participate-surveys')
+// .get(responseController.getParticipatedSurveysByUserId);
+
+// router.route('/:user_id/participate-surveys/:survey_id')
+// .get(participateController.getParticipatedSurveysByUserId)
+// .post(participateController.createparticipate);
+
+router.route('/:user_id/participated-surveys')
+.get(participateController.getParticipatedSurveysByUserId);
+
+// 여기 문제 있음  아직 만들지 않은 Controller Function 이니까..
+// router.route('/:user_id/participate-surveys/:survey_id')
+// .post(postController.createparticipate); 
 
 module.exports = router;
 
