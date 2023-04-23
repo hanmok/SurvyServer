@@ -1,4 +1,4 @@
-const Request = require('../models/participate');
+const Request = require('../models/Participate');
 
 // exports.getAllparticipates = async (req, res, next) => { 
 // 	try { 

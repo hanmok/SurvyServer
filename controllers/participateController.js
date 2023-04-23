@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const Request = require('../models/participate');
+const Request = require('../models/Participate');
 // exports.getAllparticipates = async (req, res, next) => { 
 // 	try { 
 // 		const [participates, _] = await Request.findAll();
