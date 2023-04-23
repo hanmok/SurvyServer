@@ -4,10 +4,13 @@ class SelectableOption {
 	question_id: number;
 	position: number;
 	value: string;
-	constructor(question_id, position, value) { 
+	placeholder: string;
+
+	constructor(question_id, position, value, placeholder) { 
 		this.question_id = question_id;
 		this.position = position;
-		this.value = value;
+		this.value = value ?? null;
+		this.placeholder = placeholder ?? null
 	}
 
 	async save() { 
@@ -15,12 +18,14 @@ class SelectableOption {
 		INSERT INTO SelectableOption(
 			question_id,
 			position,
-			value
+			value,
+			placeholder
 		)
 		VALUES(
 			'${this.question_id}',
 			'${this.position}',
-			'${this.value}'
+			'${this.value}',
+			'${this.placeholder}'
 		)`;
 		return db.execute(sql);
 	}

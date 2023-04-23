@@ -6,3 +6,4 @@ const responseController = require('../controllers/responseController');
 router.route("/")
     .get(responseController.getAllResponses)
     .post(responseController.createResponse);
+module.exports = router;

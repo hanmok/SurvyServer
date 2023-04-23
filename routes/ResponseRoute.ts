@@ -7,5 +7,6 @@ router.route("/")
 .post(responseController.createResponse);
 
 
+module.exports = router;
 
 export {};

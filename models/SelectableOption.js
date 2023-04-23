@@ -11,10 +11,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const db = require('../config/db');
 class SelectableOption {
-    constructor(question_id, position, value) {
+    constructor(question_id, position, value, placeholder) {
         this.question_id = question_id;
         this.position = position;
-        this.value = value;
+        this.value = value !== null && value !== void 0 ? value : null;
+        this.placeholder = placeholder !== null && placeholder !== void 0 ? placeholder : null;
     }
     save() {
         return __awaiter(this, void 0, void 0, function* () {
@@ -22,12 +23,14 @@ class SelectableOption {
 		INSERT INTO SelectableOption(
 			question_id,
 			position,
-			value
+			value,
+			placeholder
 		)
 		VALUES(
 			'${this.question_id}',
 			'${this.position}',
-			'${this.value}'
+			'${this.value}',
+			'${this.placeholder}'
 		)`;
             return db.execute(sql);
         });

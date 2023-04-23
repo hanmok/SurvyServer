@@ -29,13 +29,13 @@ class Response {
 			answerText
 			)
 			VALUES (
-				${this.question_id},
-				${this.selectableOption_id},
-				${this.user_id},
-				${this.timeTookInSec},
-				${this.answerText}
-			)
-		)`;
+				'${this.question_id}',
+				'${this.selectableOption_id}',
+				'${this.user_id}',
+				'${this.timeTookInSec}',
+				'${this.answerText}'
+			)`;
+            return db.execute(sql);
         });
     }
     static findAll() {
@@ -47,3 +47,4 @@ class Response {
         return db.execute(sql);
     }
 }
+module.exports = Response;

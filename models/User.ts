@@ -5,6 +5,7 @@ class User {
 	password: string;
 	age: number;
 	isMale: number;
+	
 	constructor(username, password, age, isMale) { 
 		this.username = username
 		this.password = password

@@ -10,8 +10,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 const SelectableOption = require('../models/SelectableOption');
 exports.createSelectableOption = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
     try {
-        let { question_id, position, value } = req.body;
-        let selectableOption = new SelectableOption(question_id, position, value);
+        let { question_id, position, value, placeholder } = req.body;
+        let selectableOption = new SelectableOption(question_id, position, value, placeholder);
         selectableOption = yield selectableOption.save();
         res.status(201).json({ message: "selectableOption created" });
     }

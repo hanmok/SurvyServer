@@ -10,8 +10,8 @@ class Response {
 	constructor(question_id, selectableOption_id, user_id, timeTookInSec, answerText = "") { 
 		this.question_id = question_id;
 		this.selectableOption_id = selectableOption_id;
-		this.user_id = user_id
-		this.timeTookInSec = timeTookInSec
+		this.user_id = user_id;
+		this.timeTookInSec = timeTookInSec;
 		this.answerText = answerText;
 	}
 
@@ -25,13 +25,13 @@ class Response {
 			answerText
 			)
 			VALUES (
-				${this.question_id},
-				${this.selectableOption_id},
-				${this.user_id},
-				${this.timeTookInSec},
-				${this.answerText}
-			)
-		)`
+				'${this.question_id}',
+				'${this.selectableOption_id}',
+				'${this.user_id}',
+				'${this.timeTookInSec}',
+				'${this.answerText}'
+			)`;
+		return db.execute(sql);
 	}
 
 	static findAll() { 
@@ -45,5 +45,6 @@ class Response {
 	}
 }
 
+module.exports = Response;
 
 export {};

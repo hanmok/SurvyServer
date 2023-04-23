@@ -18,6 +18,7 @@ const questionRoute = require('./routes/questionRoute');
 const answerRoute = require('./routes/answerRoute');
 const sectionBridgeRoute = require('./routes/sectionBridgeRoute');
 const question_questionOptionRoute = require('./routes/question_questionOptionRoute');
+const responseRoute = require('./routes/ResponseRoute')
 // Middleware
 app.use(express.json()); // parse json bodies in the request object
 
@@ -33,6 +34,7 @@ app.use('/sections', sectionRoute);
 app.use('/questions', questionRoute);
 app.use('/answers', answerRoute);
 app.use('/section-bridges', sectionBridgeRoute);
+app.use('/responses', responseRoute);
 // app.use('/question-question-options', question_questionOptionRoute);
 
 // app.use

@@ -2,8 +2,8 @@ const SelectableOption = require('../models/SelectableOption')
 
 exports.createSelectableOption = async (req, res, next) => { 
 	try { 
-		let {question_id, position, value} = req.body;
-		let selectableOption = new SelectableOption(question_id, position, value);
+		let {question_id, position, value, placeholder} = req.body;
+		let selectableOption = new SelectableOption(question_id, position, value, placeholder);
 		selectableOption = await selectableOption.save();
 		res.status(201).json({message: "selectableOption created"});
 	} catch (error) { 
