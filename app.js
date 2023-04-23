@@ -32,6 +32,12 @@ app.use('/answers', answerRoute);
 app.use('/section-bridges', sectionBridgeRoute);
 app.use('/responses', responseRoute);
 // app.use('/question-question-options', question_questionOptionRoute);
+app.get('/', (req, res) => {
+    res.send("hi, this is home.");
+});
+app.get('/test', (req, res) => {
+    res.send("hi, this is test");
+});
 // app.use
 // Global Error Handler. IMPORTANT function params MUST start with err
 app.use((err, req, res, next) => {
