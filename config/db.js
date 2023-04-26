@@ -18,7 +18,17 @@ const pool = mysql.createPool({
 // 	console.log(result);
 // });
 
-module.exports = pool.promise();
+// const dburl = process.env.MYSQL_ADDON 
+//     ||   'mysql://' + process.env.DB_USER+ ':' + process.env.DB_PASS 
+//         + '@' + process.env.DB_HOST+'/' + process.env.DB_NAME
+
+const dburl = process.env.MYSQL_ADDON || 'mysql://bce8ef11b95d3a:c3fa51f1@us-cdbr-east-06.cleardb.net/heroku_3df4ab91447196b'
+
+console.log(`db connected to ${dburl}`);
+
+const conn = mysql.createConnection(dburl);
+module.exports = conn;
+// module.exports = pool.promise();
 
 // pool.execute(sql)
 // or 
