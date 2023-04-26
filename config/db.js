@@ -27,7 +27,7 @@ const dburl = process.env.MYSQL_ADDON || 'mysql://bce8ef11b95d3a:c3fa51f1@us-cdb
 console.log(`db connected to ${dburl}`);
 
 const conn = mysql.createConnection(dburl);
-module.exports = conn;
+module.exports = conn.promise();
 // module.exports = pool.promise();
 
 // pool.execute(sql)
