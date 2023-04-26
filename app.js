@@ -46,6 +46,8 @@ app.use((err, req, res, next) => {
     console.log(err.code);
     res.status(500).json({
         message: "Something went really wrong",
+        stack: err.stack,
+        name: err.name
     });
 });
 // Listen on pc port
