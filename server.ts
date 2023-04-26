@@ -1,5 +1,4 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 // server.js
 Object.defineProperty(exports, "__esModule", { value: true });
 require("dotenv").config(); // ALLOWS ENVIRONMENT VARIABLES TO BE SET ON PROCESS.ENV SHOULD BE AT TOP
@@ -50,3 +49,5 @@ app.use((err, req, res, next) => {
 const PORT = process.env.PORT || 4000;
 console.log(`port: ${PORT}`);
 app.listen(PORT, () => console.log(`Server running on PORT ${PORT}`));
+
+export {};
