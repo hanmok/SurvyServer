@@ -48,6 +48,10 @@ app.use((err, req, res, next) => {
 // const PORT = process.env.PORT || 3000;
 const PORT = process.env.PORT || 4000;
 console.log(`port: ${PORT}`);
-app.listen(PORT, () => console.log(`Server running on PORT ${PORT}`));
+
+setInterval(() => { 
+    app.listen(PORT, () => console.log(`Server running on PORT ${PORT}`));
+}, 25 * 60 * 1000);
+
 
 export {};
