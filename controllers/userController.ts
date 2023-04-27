@@ -12,8 +12,9 @@ exports.getAllUsers = async (req, res, next) => {
 
 exports.createUser = async (req, res, next) => { 
 	try { 
-		let {username, password, age, isMale} = req.body;
-		let user = new User(username, password, age, isMale);
+		// let {username, password, age, isMale} = req.body;
+		let {username, password, isMale} = req.body;
+		let user = new User(username, password, isMale);
 		user = await user.save();
 		res.status(201).json({message: "User created"});
 	} catch (error) { 
