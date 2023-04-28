@@ -22,24 +22,23 @@ const dburl = process.env.MYSQL_ADDON || 'mysql://bce8ef11b95d3a:c3fa51f1@us-cdb
 console.log(`process.env: ${process.env}`);
 console.log(`try db connection to ${dburl}`);
 const db = mysql.createConnection(dburl);
-function handleDisconnect() {
-    db.connect(function (err) {
-        if (err) {
-            console.log('error when connecting to db:', err);
-            setTimeout(handleDisconnect, 2000);
-        }
-    });
-    db.on('error', function (err) {
-        console.log('db error', err);
-        if (err.code === 'PROTOCOL_CONNECTION_LOST') {
-            return handleDisconnect();
-        }
-        else {
-            throw err;
-        }
-    });
-}
-handleDisconnect();
+// function handleDisconnect() {
+// 	db.connect(function(err) {            
+// 	  if(err) {                            
+// 		console.log('error when connecting to db:', err);
+// 		setTimeout(handleDisconnect, 2000); 
+// 	  }                                   
+// 	});                                 
+// 	db.on('error', function(err) {
+// 	  console.log('db error', err);
+// 	  if(err.code === 'PROTOCOL_CONNECTION_LOST') { 
+// 		return handleDisconnect();                      
+// 	  } else {                                    
+// 		throw err;                              
+// 	  }
+// 	});
+//   }
+//   handleDisconnect();
 module.exports = db.promise();
 // module.exports = pool.promise();
 // pool.execute(sql)
