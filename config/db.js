@@ -25,9 +25,31 @@ const pool = mysql.createPool({
 const dburl = process.env.MYSQL_ADDON || 'mysql://bce8ef11b95d3a:c3fa51f1@us-cdbr-east-06.cleardb.net/heroku_3df4ab91447196b'
 // const dburl = process.env.MYSQL_ADDON || 'mysql://' + process.env.DB_USER +':' +process.env.DB_PASSWORD+ '@' +process.env.DB_HOST+'/heroku_3df4ab91447196b'
 console.log(`process.env: ${process.env}`);
-console.log(`db connected to ${dburl}`);
+console.log(`try db connection to ${dburl}`);
 
 const conn = mysql.createConnection(dburl);
+
+function handleDisconnect() {
+	db.connect(function(err) {            
+	  if(err) {                            
+		console.log('error when connecting to db:', err);
+		setTimeout(handleDisconnect, 2000); 
+	  }                                   
+	});                                 
+										   
+	db.on('error', function(err) {
+	  console.log('db error', err);
+	  if(err.code === 'PROTOCOL_CONNECTION_LOST') { 
+		return handleDisconnect();                      
+	  } else {                                    
+		throw err;                              
+	  }
+	});
+  }
+  
+  handleDisconnect();
+
+
 module.exports = conn.promise();
 // module.exports = pool.promise();
 
