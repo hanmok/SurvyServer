@@ -6,7 +6,6 @@ class Question {
 	position: number;
 	text: string;
 	expectedTimeInSec: number;
-	// correctAnswer: number; // TypeScript 먼저 배우기.. 
 
 	constructor(questionType_id, section_id, position, text, expectedTimeInSec) { 
 		this.questionType_id = questionType_id;

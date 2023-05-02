@@ -11,7 +11,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const db = require('../config/db');
 class Question {
-    // correctAnswer: number; // TypeScript 먼저 배우기.. 
     constructor(questionType_id, section_id, position, text, expectedTimeInSec) {
         this.questionType_id = questionType_id;
         this.section_id = section_id;
