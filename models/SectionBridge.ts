@@ -1,5 +1,6 @@
 
-const db = require('../config/db');
+const dbModel = require('../config/db');
+const db = dbModel.promise();
 
 class SectionBridge { 
 	current_id: number;

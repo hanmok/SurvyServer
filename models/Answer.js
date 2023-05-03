@@ -9,7 +9,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const db = require('../config/db');
+const dbModel = require('../config/db');
+const db = dbModel.promise();
 class Answer {
     // correctAnswer; // 지금 처리하기 애매함.. 
     constructor(question_id, user_id, selectableOption_id, textAnswer, timeTookInSec) {

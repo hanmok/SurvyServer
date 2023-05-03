@@ -1,4 +1,5 @@
-const db = require('../config/db');
+const dbModel = require('../config/db');
+const promise = dbModel.promise();
 
 class Response { 
 	question_id: number;
@@ -31,17 +32,20 @@ class Response {
 				'${this.timeTookInSec}',
 				'${this.answerText}'
 			)`;
-		return db.execute(sql);
+		// return db.execute(sql);
+		return promise.execute(sql);
 	}
 
 	static findAll() { 
 		let sql = `SELECT * FROM Response`;
-		return db.execute(sql);
+		// return db.execute(sql);
+		return promise.execute(sql);
 	}
 
 	static findById(id) { 
 		let sql = `SELECT * FROM Response WHERE id=${id}`;
-		return db.execute(sql);
+		// return db.execute(sql);
+		return promise.execute(sql);
 	}
 }
 

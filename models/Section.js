@@ -9,7 +9,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const db = require('../config/db');
+const dbModel = require('../config/db');
+const db = dbModel.promise();
 class Section {
     constructor(title, survey_id) {
         this.title = title !== null && title !== void 0 ? title : "";

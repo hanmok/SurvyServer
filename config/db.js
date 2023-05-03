@@ -40,7 +40,8 @@ function handleDisconnect() {
     });
 }
 handleDisconnect();
-module.exports = db.promise();
+// module.exports = db.promise();
+module.exports = db;
 // module.exports = pool.promise();
 // pool.execute(sql)
 // or 

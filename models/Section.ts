@@ -1,4 +1,5 @@
-const db = require('../config/db');
+const dbModel = require('../config/db');
+const db = dbModel.promise();
 
 class Section { 
 	title: string;

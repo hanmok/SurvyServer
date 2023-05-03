@@ -9,7 +9,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const db = require('../config/db');
+const dbModel = require('../config/db');
+const db = dbModel.promise();
 class Post {
     constructor(user_id, survey_id) {
         this.user_id = user_id;

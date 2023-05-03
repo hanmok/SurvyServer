@@ -1,4 +1,5 @@
-const db = require('../config/db');
+const dbModel = require('../config/db');
+const db = dbModel.promise();
 
 class Question_QuestionOption {
 	question_id: number;
