@@ -25,7 +25,7 @@ exports.createTag = (req, res, next) => __awaiter(void 0, void 0, void 0, functi
         let { name } = req.body;
         let tag = new Tag(name);
         tag = yield tag.save();
-        res.status(201).json({ message: "Tag created" });
+        res.status(201).json({ message: "Tag created", tagInfo: tag });
     }
     catch (error) {
         console.log(error);

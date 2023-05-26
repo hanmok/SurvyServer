@@ -24,7 +24,8 @@ exports.createUser = (req, res, next) => __awaiter(this, void 0, void 0, functio
         let { username, password, isMale } = req.body;
         let user = new User(username, password, isMale);
         user = yield user.save();
-        res.status(201).json({ message: "User created" });
+        // res.status(201).json({message: "User created"});
+        res.status(201).json({ user });
     }
     catch (error) {
         console.log(error);
