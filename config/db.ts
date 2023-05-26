@@ -61,4 +61,3 @@ module.exports = pool;
 // pool.execute(sql)
 // or 
 // pool.query(sql)
-
