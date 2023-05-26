@@ -15,7 +15,7 @@ exports.createSurvey_tag = async(req, res, next) => {
 		let {tag_id, survey_id} = req.body;
 		let survey_tag = new Survey_tag(tag_id, survey_id);
 		survey_tag = await survey_tag.save();
-		res.status(201).json({message: "survey_tag created"})
+		res.status(201).json({message: "survey_tag created", survey_tagInfo: survey_tag})
 	} catch (error) { 
 		console.log(error);
 		next(error);

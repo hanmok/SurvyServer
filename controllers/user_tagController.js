@@ -49,7 +49,7 @@ exports.createUser_tag = (req, res, next) => __awaiter(void 0, void 0, void 0, f
         let { user_id, tag_id } = req.params;
         let user_tag = new User_tag(user_id, tag_id);
         user_tag = yield user_tag.save();
-        res.status(201).json({ "message": "user_tag created" });
+        res.status(201).json({ "message": "user_tag created", user_tagInfo: user_tag });
     }
     catch (error) {
         console.log(error);

@@ -7,7 +7,7 @@ exports.createSection = async (req, res, next) => {
 		// let section = new Section(survey_id, expectedTimeInMin);
 		let section = new Section(title, survey_id);
 		section = await section.save();
-		res.status(201).json({message: "Section created"});
+		res.status(201).json({message: "Section created", sectionInfo: section});
 	} catch (error) { 
 		console.log(error);
 		next(error);

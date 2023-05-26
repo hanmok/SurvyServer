@@ -16,7 +16,7 @@ exports.createSectionBridge = async (req, res, next) => {
 		let {current_id, next_id, question_id, selectableOption_id} = req.body;
 		let sectionBridge = new SectionBridge(current_id, next_id, question_id, selectableOption_id);
 		sectionBridge = await sectionBridge.save();
-		res.status(201).json({message: "sectionBridge created"});
+		res.status(201).json({message: "sectionBridge created", sectionBridgeInfo: sectionBridge});
 	} catch (error) { 
 		console.log(error);
 		next(error);

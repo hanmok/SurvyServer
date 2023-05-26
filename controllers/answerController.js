@@ -25,7 +25,7 @@ exports.createAnswer = (req, res, next) => __awaiter(void 0, void 0, void 0, fun
         let { question_id, user_id, selectableOption_id, textAnswer, timeTookInSec } = req.body;
         let answer = new Answer(question_id, user_id, selectableOption_id, textAnswer, timeTookInSec);
         answer = yield answer.save();
-        res.status(201).json({ message: "Answer created" });
+        res.status(201).json({ message: "Answer created", answerInfo: answer });
     }
     catch (error) {
         console.log(error);

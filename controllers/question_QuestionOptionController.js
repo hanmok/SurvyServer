@@ -25,7 +25,7 @@ exports.createQuestion_QuestionOption = (req, res, next) => __awaiter(void 0, vo
         let { question_id, questionOption_id } = req.body;
         let question_questionOption = new Question_QuestionOption(question_id, questionOption_id);
         question_questionOption = yield question_questionOption.save();
-        res.status(201).json({ message: "question_questionOption created" });
+        res.status(201).json({ message: "question_questionOption created", question_questionOptionInfo: question_questionOption });
     }
     catch (error) {
         console.log(error);

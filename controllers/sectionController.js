@@ -17,7 +17,7 @@ exports.createSection = (req, res, next) => __awaiter(void 0, void 0, void 0, fu
         // let section = new Section(survey_id, expectedTimeInMin);
         let section = new Section(title, survey_id);
         section = yield section.save();
-        res.status(201).json({ message: "Section created" });
+        res.status(201).json({ message: "Section created", sectionInfo: section });
     }
     catch (error) {
         console.log(error);

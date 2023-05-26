@@ -16,7 +16,7 @@ exports.createQuestion = (req, res, next) => __awaiter(void 0, void 0, void 0, f
         console.log(`questionType_id: ${questionType_id}`);
         let question = new Question(questionType_id, section_id, position, text, expectedTimeInSec);
         question = yield question.save();
-        res.status(201).json({ message: "Question Created" });
+        res.status(201).json({ message: "Question Created", questionInfo: question });
     }
     catch (error) {
         console.log(error);

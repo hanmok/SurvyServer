@@ -25,7 +25,7 @@ exports.createResponse = (req, res, next) => __awaiter(void 0, void 0, void 0, f
         let { question_id, selectableOption_id, user_id, timeTookInSec, answerText } = req.body;
         let response = new Response(question_id, selectableOption_id, user_id, timeTookInSec, answerText);
         response = yield response.save();
-        res.status(201).json({ message: "Response Created" });
+        res.status(201).json({ message: "Response Created", responseInfo: response });
     }
     catch (error) {
         console.log(error);

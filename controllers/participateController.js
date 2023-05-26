@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const Request = require('../models/Participate');
+const Participate = require('../models/Participate');
 // exports.getAllparticipates = async (req, res, next) => { 
 // 	try { 
 // 		const [participates, _] = await Request.findAll();
@@ -22,7 +22,7 @@ const Request = require('../models/Participate');
 exports.getParticipatedSurveysByUserId = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         let user_id = req.params.user_id;
-        let [surveys, _] = yield Request.findByUserId(user_id);
+        let [surveys, _] = yield Participate.findByUserId(user_id);
         // res.status(200).json({surveys: surveys[0]});
         res.status(200).json({ count: surveys.length, surveys });
     }
@@ -34,7 +34,7 @@ exports.getParticipatedSurveysByUserId = (req, res, next) => __awaiter(void 0, v
 exports.getParticipatedUsersBySurveyId = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         let survey_id = req.params.survey_id;
-        let [user, _] = yield Request.findBySurveyId(survey_id);
+        let [user, _] = yield Participate.findBySurveyId(survey_id);
         res.status(200).json({ user });
     }
     catch (error) {
@@ -45,9 +45,9 @@ exports.getParticipatedUsersBySurveyId = (req, res, next) => __awaiter(void 0, v
 exports.createparticipate = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         let { user_id, survey_id } = req.params;
-        let participate = new Request(user_id, survey_id);
+        let participate = new Participate(user_id, survey_id);
         participate = yield participate.save();
-        res.status(201).json({ message: "participate created" });
+        res.status(201).json({ message: "participate created", participationInfo: participate });
     }
     catch (error) {
         console.log(error);

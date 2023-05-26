@@ -5,7 +5,7 @@ exports.createQuestionType = async (req, res, next) => {
 		let {id, description} = req.body;
 		let questionType = new QuestionType(id, description);
 		questionType = await questionType.save();
-		res.status(201).json({message: "QuestionType created"});
+		res.status(201).json({message: "QuestionType created", questionTypeInfo: questionType});
 	} catch (error) {
 		console.log(error);
 		next(error);

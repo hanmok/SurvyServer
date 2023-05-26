@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const dbModel = require('../config/db');
-const promise = dbModel.promise();
+const db = dbModel.promise();
 class Response {
     constructor(question_id, selectableOption_id, user_id, timeTookInSec, answerText = "") {
         this.question_id = question_id;
@@ -37,18 +37,18 @@ class Response {
 				'${this.answerText}'
 			)`;
             // return db.execute(sql);
-            return promise.execute(sql);
+            return db.execute(sql);
         });
     }
     static findAll() {
         let sql = `SELECT * FROM Response`;
         // return db.execute(sql);
-        return promise.execute(sql);
+        return db.execute(sql);
     }
     static findById(id) {
         let sql = `SELECT * FROM Response WHERE id=${id}`;
         // return db.execute(sql);
-        return promise.execute(sql);
+        return db.execute(sql);
     }
 }
 module.exports = Response;

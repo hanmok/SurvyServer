@@ -40,7 +40,7 @@ exports.create_post = async(req, res, next) => {
 		let post = new Post(user_id, survey_id);
 		post = await post.save();
 
-		res.status(201).json({message: "post created"})
+		res.status(201).json({message: "post created", postInfo: post})
 	} catch (error) { 
 		console.log(error);
 		next(error);

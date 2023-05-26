@@ -25,7 +25,7 @@ exports.createSurvey = (req, res, next) => __awaiter(void 0, void 0, void 0, fun
         let { title, participationGoal } = req.body;
         let survey = new Survey(title, participationGoal);
         survey = yield survey.save();
-        res.status(201).json({ message: "Survey created" });
+        res.status(201).json({ message: "Survey created", surveyInfo: survey });
     }
     catch (error) {
         console.log(error);

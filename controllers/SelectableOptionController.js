@@ -13,7 +13,7 @@ exports.createSelectableOption = (req, res, next) => __awaiter(this, void 0, voi
         let { question_id, position, value, placeholder } = req.body;
         let selectableOption = new SelectableOption(question_id, position, value, placeholder);
         selectableOption = yield selectableOption.save();
-        res.status(201).json({ message: "selectableOption created" });
+        res.status(201).json({ message: "selectableOption created", selectableOptionInfo: selectableOption });
     }
     catch (error) {
         console.log(error);

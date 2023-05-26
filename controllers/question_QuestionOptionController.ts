@@ -11,11 +11,11 @@ exports.getAllQuestion_QuestionOptions = async (req, res, next) => {
 }
 
 exports.createQuestion_QuestionOption = async (req, res, next) => { 
-	try {
+	try { 
 		let {question_id, questionOption_id} = req.body;
 		let question_questionOption = new Question_QuestionOption(question_id, questionOption_id);
 		question_questionOption = await question_questionOption.save();
-		res.status(201).json({message: "question_questionOption created"})
+		res.status(201).json({message: "question_questionOption created", question_questionOptionInfo: question_questionOption})
 	} catch (error) { 
 		console.log(error);
 		next(error);
