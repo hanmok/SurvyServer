@@ -5,7 +5,7 @@ exports.createSelectableOption = async (req, res, next) => {
 		let {question_id, position, value, placeholder} = req.body;
 		let selectableOption = new SelectableOption(question_id, position, value, placeholder);
 		selectableOption = await selectableOption.save();
-		res.status(201).json({ message: "selectableOption created", selectableOptionInfo: selectableOption});
+		res.status(201).json({ message: "selectableOption created", id: selectableOption[0].insertId});
 	} catch (error) { 
 		console.log(error);
 		next(error);

@@ -20,8 +20,6 @@ class Request {
 			'${this.survey_id}'
 		)`;
 		return db.execute(sql);
-		// return db.query(sql, function(err, results, fields) {})
-		// return db.execute()
 	}
 
 	static findAll() { 

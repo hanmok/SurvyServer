@@ -23,7 +23,7 @@ exports.createSectionBridge = (req, res, next) => __awaiter(this, void 0, void 0
         let { current_id, next_id, question_id, selectableOption_id } = req.body;
         let sectionBridge = new SectionBridge(current_id, next_id, question_id, selectableOption_id);
         sectionBridge = yield sectionBridge.save();
-        res.status(201).json({ message: "sectionBridge created", sectionBridgeInfo: sectionBridge });
+        res.status(201).json({ message: "sectionBridge created", current_id: current_id, next_id: next_id, question_id: question_id, selectableOption_id: selectableOption_id });
     }
     catch (error) {
         console.log(error);

@@ -47,7 +47,7 @@ exports.createParticipate = (req, res, next) => __awaiter(void 0, void 0, void 0
         let { user_id, survey_id } = req.params;
         let participate = new Participate(user_id, survey_id);
         participate = yield participate.save();
-        res.status(201).json({ message: "participate created", participationInfo: participate });
+        res.status(201).json({ message: "participate created", user_id: user_id, survey_id: survey_id });
     }
     catch (error) {
         console.log(error);

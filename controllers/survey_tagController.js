@@ -25,7 +25,7 @@ exports.createSurvey_tag = (req, res, next) => __awaiter(void 0, void 0, void 0,
         let { tag_id, survey_id } = req.body;
         let survey_tag = new Survey_tag(tag_id, survey_id);
         survey_tag = yield survey_tag.save();
-        res.status(201).json({ message: "survey_tag created", survey_tagInfo: survey_tag });
+        res.status(201).json({ message: "survey_tag created", survey_id: survey_id, tag_id: tag_id });
     }
     catch (error) {
         console.log(error);

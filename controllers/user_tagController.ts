@@ -42,7 +42,7 @@ exports.createUser_tag = async (req, res, next) => {
 		let {user_id, tag_id} = req.params;
 		let user_tag = new User_tag(user_id, tag_id);
 		user_tag = await user_tag.save();
-		res.status(201).json({"message": "user_tag created", user_tagInfo: user_tag});
+		res.status(201).json({"message": "user_tag created", user_id: user_id, tag_id: tag_id});
 	} catch (error) { 
 		console.log(error);
 		next(error);

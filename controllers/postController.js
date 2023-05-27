@@ -48,7 +48,7 @@ exports.create_post = (req, res, next) => __awaiter(void 0, void 0, void 0, func
         let { user_id, survey_id } = req.body;
         let post = new Post(user_id, survey_id);
         post = yield post.save();
-        res.status(201).json({ message: "post created", postInfo: post });
+        res.status(201).json({ message: "post created", survey_id: survey_id, user_id: user_id });
     }
     catch (error) {
         console.log(error);

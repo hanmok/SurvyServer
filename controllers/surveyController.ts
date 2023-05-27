@@ -17,7 +17,7 @@ exports.createSurvey = async (req, res, next) => {
 		let survey = new Survey(title, participationGoal, reward_range);
 		survey = await survey.save();
 
-		res.status(201).json({message: "Survey created", surveyInfo: survey[0].insertId});
+		res.status(201).json({message: "Survey created", id: survey[0].insertId});
 
 	} catch (error) { 
 		console.log(error);
