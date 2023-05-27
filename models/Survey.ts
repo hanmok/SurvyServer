@@ -4,19 +4,25 @@ const db = dbModel.promise();
 class Survey { 
 	title: string;
 	participationGoal: number;
-	constructor(title, participationGoal) { 
+	reward_range: string;
+
+	constructor(title, participationGoal, reward_range) { 
 		this.title = title
 		this.participationGoal = participationGoal
+		this.reward_range = reward_range
 	}
+
 	async save() { 
 		let sql = `
 		INSERT INTO Survey(
 			title,
-			participationGoal
+			participationGoal,
+			reward_range
 			)
 			VALUES(
 				'${this.title}', 
-				'${this.participationGoal}'
+				'${this.participationGoal}',
+				'${this.reward_range}'
 			)`;
 		return db.execute(sql);
 	}

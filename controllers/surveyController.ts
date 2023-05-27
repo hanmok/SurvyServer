@@ -13,8 +13,8 @@ exports.getAllSurveys = async (req, res, next) => {
 
 exports.createSurvey = async (req, res, next) => { 
 	try { 
-		let {title, participationGoal} = req.body;
-		let survey = new Survey(title, participationGoal);
+		let {title, participationGoal, reward_range} = req.body;
+		let survey = new Survey(title, participationGoal, reward_range);
 		survey = await survey.save();
 
 		res.status(201).json({message: "Survey created", surveyInfo: survey});

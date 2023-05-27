@@ -22,8 +22,8 @@ exports.getAllSurveys = (req, res, next) => __awaiter(void 0, void 0, void 0, fu
 });
 exports.createSurvey = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        let { title, participationGoal } = req.body;
-        let survey = new Survey(title, participationGoal);
+        let { title, participationGoal, reward_range } = req.body;
+        let survey = new Survey(title, participationGoal, reward_range);
         survey = yield survey.save();
         res.status(201).json({ message: "Survey created", surveyInfo: survey });
     }

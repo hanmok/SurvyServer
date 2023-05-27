@@ -12,20 +12,23 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const dbModel = require('../config/db');
 const db = dbModel.promise();
 class Survey {
-    constructor(title, participationGoal) {
+    constructor(title, participationGoal, reward_range) {
         this.title = title;
         this.participationGoal = participationGoal;
+        this.reward_range = reward_range;
     }
     save() {
         return __awaiter(this, void 0, void 0, function* () {
             let sql = `
 		INSERT INTO Survey(
 			title,
-			participationGoal
+			participationGoal,
+			reward_range
 			)
 			VALUES(
 				'${this.title}', 
-				'${this.participationGoal}'
+				'${this.participationGoal}',
+				'${this.reward_range}'
 			)`;
             return db.execute(sql);
         });
