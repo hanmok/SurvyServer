@@ -10,6 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const Survey = require('../models/Survey');
+const Post = require('../models/Post');
 exports.getAllSurveys = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const [surveys, _] = yield Survey.findAll();
@@ -22,9 +23,12 @@ exports.getAllSurveys = (req, res, next) => __awaiter(void 0, void 0, void 0, fu
 });
 exports.createSurvey = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        let { title, participationGoal, reward_range } = req.body;
+        let { title, participationGoal, reward_range, user_id } = req.body;
         let survey = new Survey(title, participationGoal, reward_range);
         survey = yield survey.save();
+        let survey_id = survey[0].insertId;
+        let post = new Post(user_id, survey_id);
+        post = yield post.save();
         res.status(201).json({ message: "Survey created", id: survey[0].insertId });
     }
     catch (error) {

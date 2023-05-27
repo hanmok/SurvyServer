@@ -1,4 +1,5 @@
 const Survey = require('../models/Survey');
+const Post = require('../models/Post');
 
 exports.getAllSurveys = async (req, res, next) => { 
 	try { 
@@ -13,12 +14,14 @@ exports.getAllSurveys = async (req, res, next) => {
 
 exports.createSurvey = async (req, res, next) => { 
 	try { 
-		let {title, participationGoal, reward_range} = req.body;
+		let {title, participationGoal, reward_range, user_id} = req.body;
 		let survey = new Survey(title, participationGoal, reward_range);
 		survey = await survey.save();
+		let survey_id = survey[0].insertId;
+		let post = new Post(user_id, survey_id);
+		post = await post.save();
 
 		res.status(201).json({message: "Survey created", id: survey[0].insertId});
-
 	} catch (error) { 
 		console.log(error);
 		next(error);
