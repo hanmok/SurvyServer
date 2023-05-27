@@ -1,4 +1,5 @@
 "use strict";
+// /tags
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = require('express');
 const tagController = require('../controllers/tagController');

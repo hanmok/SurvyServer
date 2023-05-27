@@ -19,6 +19,7 @@ exports.createTag = async (req, res, next) => {
 		res.status(201).json({message: "Tag created", tagId: tag[0].insertId, });
 	} catch (error) { 
 		console.log(error);
+		
 		next(error);
 	}
 };

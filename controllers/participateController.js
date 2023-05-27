@@ -18,7 +18,7 @@ const Participate = require('../models/Participate');
 // 		console.log(error);
 // 		next(error);
 // 	}
-// }
+// } 
 exports.getParticipatedSurveysByUserId = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         let user_id = req.params.user_id;
@@ -42,7 +42,7 @@ exports.getParticipatedUsersBySurveyId = (req, res, next) => __awaiter(void 0, v
         next(error);
     }
 });
-exports.createparticipate = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+exports.createParticipate = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         let { user_id, survey_id } = req.params;
         let participate = new Participate(user_id, survey_id);

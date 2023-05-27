@@ -8,7 +8,7 @@ const Participate = require('../models/Participate');
 // 		console.log(error);
 // 		next(error);
 // 	}
-// }
+// } 
 
 exports.getParticipatedSurveysByUserId = async(req, res, next) => { 
 	try { 
@@ -33,7 +33,7 @@ exports.getParticipatedUsersBySurveyId = async (req, res, next) => {
 	}
 }
 
-exports.createparticipate = async(req, res, next) => { 
+exports.createParticipate = async(req, res, next) => { 
 	try { 
 		let {user_id, survey_id} = req.params;
 		let participate = new Participate(user_id, survey_id);

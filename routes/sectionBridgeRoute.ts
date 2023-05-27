@@ -1,3 +1,5 @@
+// /section-bridges
+
 
 const express = require('express');
 const sectionBridgeController = require('../controllers/sectionBridgeController');

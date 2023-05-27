@@ -1,3 +1,4 @@
+// Answer 이란거 없는데 ?
 const Answer = require('../models/Answer');
 
 exports.getAllAnswers = async (req, res, next) => { 

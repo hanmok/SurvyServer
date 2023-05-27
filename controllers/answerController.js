@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+// Answer 이란거 없는데 ?
 const Answer = require('../models/Answer');
 exports.getAllAnswers = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {

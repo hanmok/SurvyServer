@@ -1,3 +1,4 @@
+// /question-types
 
 const express = require('express');
 const questionTypeController = require('../controllers/questionTypeController');

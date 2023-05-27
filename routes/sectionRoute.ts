@@ -1,3 +1,4 @@
+// /sections
 
 const express = require('express');
 const sectionController = require('../controllers/sectionController');

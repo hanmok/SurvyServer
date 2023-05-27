@@ -1,4 +1,5 @@
 "use strict";
+// /surveys
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = require('express');
 const router = express.Router();
@@ -19,6 +20,8 @@ router.route("/:survey_id/posted-user")
 // User, Participated Surveys
 router.route("/:survey_id/participated-users")
     .get(participateController.getParticipatedUsersBySurveyId);
+router.route("/:survey_id/participated-users/:user_id")
+    .post(participateController.createParticipate);
 // Tag
 router.route("/:survey_id/tags")
     .get(survey_tagController.getTagsBySurveyId);

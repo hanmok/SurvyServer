@@ -1,3 +1,4 @@
+// /tags
 
 const express = require('express');
 const tagController = require('../controllers/tagController');

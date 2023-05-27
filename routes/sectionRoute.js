@@ -1,4 +1,5 @@
 "use strict";
+// /sections
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = require('express');
 const sectionController = require('../controllers/sectionController');

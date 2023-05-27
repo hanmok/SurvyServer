@@ -1,4 +1,5 @@
 "use strict";
+// /question-types
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = require('express');
 const questionTypeController = require('../controllers/questionTypeController');
