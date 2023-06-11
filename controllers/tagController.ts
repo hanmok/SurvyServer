@@ -14,9 +14,10 @@ exports.getAllTags = async (req, res, next) => {
 exports.createTag = async (req, res, next) => { 
 	try { 
 		let {name} = req.body;
+		console.log(`name: ${name}, req.body: ${req.body}`)
 		let tag = new Tag(name);
 		tag = await tag.save();
-		res.status(201).json({message: "Tag created", tagId: tag[0].insertId, });
+		res.status(201).json({message: "Tag created", tagId: tag[0].insertId});
 	} catch (error) { 
 		console.log(error);
 		
