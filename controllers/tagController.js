@@ -23,9 +23,10 @@ exports.getAllTags = (req, res, next) => __awaiter(void 0, void 0, void 0, funct
 exports.createTag = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         let { name } = req.body;
+        console.log(`name: ${name}, req.body: ${req.body}`);
         let tag = new Tag(name);
         tag = yield tag.save();
-        res.status(201).json({ message: "Tag created", tagId: tag[0].insertId, });
+        res.status(201).json({ message: "Tag created", tagId: tag[0].insertId });
     }
     catch (error) {
         console.log(error);

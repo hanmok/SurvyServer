@@ -6,7 +6,6 @@ exports.getAllSurveys = async (req, res, next) => {
 		const [surveys, _] = await Survey.findAll();
 		// res.status(200).json({count: surveys.length, surveys});
 		res.status(200).json({surveys});
-
 	} catch (error) { 
 		console.log(error);
 		next(error);
