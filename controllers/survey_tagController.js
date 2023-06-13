@@ -36,7 +36,8 @@ exports.getTagsBySurveyId = (req, res, next) => __awaiter(void 0, void 0, void 0
     try {
         let survey_id = req.params.survey_id;
         let [tags, _] = yield Survey_tag.findTagsBySurveyId(survey_id);
-        res.status(200).json({ count: tags.length, tags });
+        // res.status(200).json({count: tags.length, tags});
+        res.status(200).json({ tags });
     }
     catch (error) {
         console.log(error);

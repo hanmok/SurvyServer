@@ -26,7 +26,8 @@ exports.getTagsBySurveyId = async (req, res, next) => {
 	try { 
 		let survey_id = req.params.survey_id;
 		let [tags, _] = await Survey_tag.findTagsBySurveyId(survey_id);
-		res.status(200).json({count: tags.length, tags});
+		// res.status(200).json({count: tags.length, tags});
+		res.status(200).json({tags}); 
 	} catch (error) { 
 		console.log(error);
 		next(error);

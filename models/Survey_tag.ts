@@ -31,8 +31,11 @@ class Survey_tag {
 	// 	let sql = `SELECT * FROM Survey_tag WHERE tag_id=${tag_id}`;
 	// 	return db.execute(sql);
 	// }
+
+	// tag 를 가져와야함.  Join 사용해서. 
 	static findTagsBySurveyId(survey_id) { 
-		let sql = `SELECT * FROM Survey_tag WHERE survey_id=${survey_id}`; // 바뀌어야함. 
+		// let sql = `SELECT * FROM Survey_tag WHERE survey_id=${survey_id}`; // 바뀌어야함. 
+		let sql = `SELECT tag.id as id, tag.name as name FROM tag LEFT JOIN survey_tag ON tag.id =survey_tag.tag_id WHERE survey_id=${survey_id};`
 		return db.execute(sql);
 	}
 
