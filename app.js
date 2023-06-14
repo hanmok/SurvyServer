@@ -16,13 +16,14 @@ const answerRoute = require('./routes/answerRoute');
 const sectionBridgeRoute = require('./routes/sectionBridgeRoute');
 const question_questionOptionRoute = require('./routes/question_questionOptionRoute');
 const responseRoute = require('./routes/ResponseRoute');
+const surveyTagRoute = require('./routes/surveyTagRoute');
 // Middleware
 app.use(express.json()); // parse json bodies in the request object
 // Redirect requests to endpoint starting with /posts to postRoutes.js
 app.use('/users', userRoute);
 app.use('/surveys', surveyRoute);
 // app.use('/user-surveys', requestRoute);
-// app.use('/survey_tags', survey_tagRoute);
+app.use('/survey_tags', surveyTagRoute);
 app.use('/tags', tagRoute);
 app.use('/question-types', questionTypeRoute);
 app.use('/selectable-options', selectableOptionRoute);

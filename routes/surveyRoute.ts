@@ -7,6 +7,7 @@ const postController = require('../controllers/postController');
 const survey_tagController = require('../controllers/survey_tagController');
 const participateController = require('../controllers/participateController');
 
+
 router.route("/")
 .get(surveyController.getAllSurveys)
 .post(surveyController.createSurvey);
@@ -34,6 +35,7 @@ router.route("/:survey_id/tags")
 
 router.route("/tags")
 .post(survey_tagController.createSurvey_tag);
+
 
 module.exports = router;
 
