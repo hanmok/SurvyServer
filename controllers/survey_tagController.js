@@ -13,7 +13,8 @@ const Survey_tag = require('../models/Survey_tag');
 exports.getAllSurvey_tags = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const [survey_tags, _] = yield Survey_tag.findAll();
-        res.status(200).json({ count: survey_tags.length, survey_tags });
+        // res.status(200).json({count: survey_tags.length, survey_tags});
+        res.status(200).json({ survey_tags });
     }
     catch (error) {
         console.log(error);

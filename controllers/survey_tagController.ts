@@ -3,9 +3,11 @@ const Survey_tag = require('../models/Survey_tag');
 exports.getAllSurvey_tags = async (req, res, next) => { 
 	try { 
 		const [survey_tags, _] = await Survey_tag.findAll();
-		res.status(200).json({count: survey_tags.length, survey_tags});
+		// res.status(200).json({count: survey_tags.length, survey_tags});
+		res.status(200).json({survey_tags});
 	} catch (error) { 
 		console.log(error);
+		
 		next(error);
 	}
 };

@@ -23,7 +23,7 @@ class Survey_tag {
 	}
 
 	static findAll() { 
-		let sql = `SELECT * FROM Survey_tag`;
+		let sql = 'SELECT * FROM Survey_tag';
 		return db.execute(sql);
 	}
 
