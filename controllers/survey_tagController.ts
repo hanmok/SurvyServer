@@ -6,8 +6,7 @@ exports.getAllSurvey_tags = async (req, res, next) => {
 		// res.status(200).json({count: survey_tags.length, survey_tags});
 		res.status(200).json({survey_tags});
 	} catch (error) { 
-		console.log(error);
-		
+		console.log(error); 
 		next(error);
 	}
 };

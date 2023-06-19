@@ -13,9 +13,9 @@ const Section = require('../models/Section');
 exports.createSection = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         // let {survey_id, expectedTimeInMin} = req.body;
-        let { title, survey_id } = req.body;
+        let { title, survey_id, sequence } = req.body;
         // let section = new Section(survey_id, expectedTimeInMin);
-        let section = new Section(title, survey_id);
+        let section = new Section(title, survey_id, sequence);
         section = yield section.save();
         res.status(201).json({ message: "Section created", id: section[0].insertId });
     }

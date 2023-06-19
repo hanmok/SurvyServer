@@ -12,20 +12,23 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const dbModel = require('../config/db');
 const db = dbModel.promise();
 class Section {
-    constructor(title, survey_id) {
+    constructor(title, survey_id, sequence) {
         this.title = title !== null && title !== void 0 ? title : "";
         this.survey_id = survey_id;
+        this.sequence = sequence !== null && sequence !== void 0 ? sequence : 0;
     }
     save() {
         return __awaiter(this, void 0, void 0, function* () {
             let sql = `
 		INSERT INTO Section(
 			title,
-			survey_id
+			survey_id,
+			sequence
 		)
 		VALUES(
 			'${this.title}',
-			'${this.survey_id}'
+			'${this.survey_id}',
+			'${this.sequence}'
 		)`;
             return db.execute(sql);
         });
@@ -34,10 +37,6 @@ class Section {
         let sql = `SELECT * FROM Section`;
         return db.execute(sql);
     }
-    // static findBySurveyId(survey_id) { 
-    // 	let sql = `SELECT * FROM Section WHERE survey_id=${survey_id}`;
-    // 	return db.execute(sql);
-    // }
     static findById(section_id) {
         let sql = `SELECT * FROM Section WHERE id=${section_id}`;
         return db.execute(sql);
