@@ -9,34 +9,34 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const User_tag = require('../models/User_tag');
-// const Tag = require('../models/Tag')
-exports.getAllUser_tags = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+const User_genre = require('../models/User_genre');
+// const Genre = require('../models/Genre')
+exports.getAllUser_genres = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const [user_tags, _] = yield User_tag.findAll();
-        res.status(200).json({ count: user_tags.length, user_tags });
+        const [user_genres, _] = yield User_genre.findAll();
+        res.status(200).json({ count: user_genres.length, user_genres });
     }
     catch (error) {
         console.log(error);
         next(error);
     }
 });
-exports.getTagsByUserId = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+exports.getGenresByUserId = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         let user_id = req.params.user_id;
-        console.log(`current user_id by getTagsByUserId: ${user_id}`);
-        let [tags, _] = yield User_tag.findTagsByUserId(user_id);
-        res.status(200).json({ count: tags.length, tags });
+        console.log(`current user_id by getGenresByUserId: ${user_id}`);
+        let [genres, _] = yield User_genre.findGenresByUserId(user_id);
+        res.status(200).json({ count: genres.length, genres });
     }
     catch (error) {
         console.log(error);
         next(error);
     }
 });
-exports.getUsersByTagId = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+exports.getUsersByGenreId = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        let tag_id = req.params.tag_id;
-        let [users, _] = yield User_tag.findUsersByTagId(tag_id);
+        let genre_id = req.params.genre_id;
+        let [users, _] = yield User_genre.findUsersByGenreId(genre_id);
         res.status(200).json({ count: users.length, users });
     }
     catch (error) {
@@ -44,12 +44,12 @@ exports.getUsersByTagId = (req, res, next) => __awaiter(void 0, void 0, void 0, 
         next(error);
     }
 });
-exports.createUser_tag = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+exports.createUser_genre = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        let { user_id, tag_id } = req.params;
-        let user_tag = new User_tag(user_id, tag_id);
-        user_tag = yield user_tag.save();
-        res.status(201).json({ "message": "user_tag created", user_id: user_id, tag_id: tag_id });
+        let { user_id, genre_id } = req.params;
+        let user_genre = new User_genre(user_id, genre_id);
+        user_genre = yield user_genre.save();
+        res.status(201).json({ "message": "user_genre created", user_id: user_id, genre_id: genre_id });
     }
     catch (error) {
         console.log(error);

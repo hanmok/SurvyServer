@@ -11,36 +11,36 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const dbModel = require('../config/db');
 const db = dbModel.promise();
-class User_tag {
-    constructor(user_id, tag_id) {
+class User_genre {
+    constructor(user_id, genre_id) {
         this.user_id = user_id;
-        this.tag_id = tag_id;
+        this.genre_id = genre_id;
     }
     save() {
         return __awaiter(this, void 0, void 0, function* () {
             let sql = `
-		INSERT INTO User_tag(
+		INSERT INTO User_genre(
 			user_id,
-			tag_id
+			genre_id
 		) 
 		VALUES(
 			'${this.user_id}',
-			'${this.tag_id}'
+			'${this.genre_id}'
 		)`;
             return db.execute(sql);
         });
     }
     static findAll() {
-        let sql = `SELECT * FROM User_tag`;
+        let sql = `SELECT * FROM User_genre`;
         return db.execute(sql);
     }
-    static findTagsByUserId(user_id) {
-        let sql = `SELECT * FROM User_tag WHERE user_id=${user_id}`;
+    static findGenresByUserId(user_id) {
+        let sql = `SELECT * FROM User_genre WHERE user_id=${user_id}`;
         return db.execute(sql);
     }
-    static findUsersByTagId(user_id) {
-        let sql = `SELECT * FROM User_tag WHERE user_id=${user_id}`;
+    static findUsersByGenreId(user_id) {
+        let sql = `SELECT * FROM User_genre WHERE user_id=${user_id}`;
         return db.execute(sql);
     }
 }
-module.exports = User_tag;
+module.exports = User_genre;

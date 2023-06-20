@@ -9,35 +9,35 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const Tag = require('../models/Tag');
-exports.getAllTags = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+const Genre = require('../models/Genre');
+exports.getAllGenres = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const [tags, _] = yield Tag.findAll();
-        res.status(200).json({ tags });
+        const [genres, _] = yield Genre.findAll();
+        res.status(200).json({ genres });
     }
     catch (error) {
         console.log(error);
         next(error);
     }
 });
-exports.createTag = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+exports.createGenre = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         let { name } = req.body;
         console.log(`name: ${name}, req.body: ${req.body}`);
-        let tag = new Tag(name);
-        tag = yield tag.save();
-        res.status(201).json({ message: "Tag created", tagId: tag[0].insertId });
+        let genre = new Genre(name);
+        genre = yield genre.save();
+        res.status(201).json({ message: "Genre created", genreId: genre[0].insertId });
     }
     catch (error) {
         console.log(error);
         next(error);
     }
 });
-exports.getTagById = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+exports.getGenreById = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        let tagId = req.params.id;
-        let [tag, _] = yield Tag.findById(tagId);
-        res.status(200).json({ user: tag[0] });
+        let genreId = req.params.id;
+        let [genre, _] = yield Genre.findById(genreId);
+        res.status(200).json({ user: genre[0] });
     }
     catch (error) {
         console.log(error);

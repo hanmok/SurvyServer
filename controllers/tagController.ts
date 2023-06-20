@@ -1,34 +1,34 @@
 
-const Tag = require('../models/Tag');
+const Genre = require('../models/Genre');
 
-exports.getAllTags = async (req, res, next) => { 
+exports.getAllGenres = async (req, res, next) => { 
 	try { 
-		const [tags, _] = await Tag.findAll();
-		res.status(200).json({tags})
+		const [genres, _] = await Genre.findAll();
+		res.status(200).json({genres})
 	} catch (error) {
 		console.log(error);
 		next(error);
 	}
 }
 
-exports.createTag = async (req, res, next) => { 
+exports.createGenre = async (req, res, next) => { 
 	try { 
 		let {name} = req.body;
 		console.log(`name: ${name}, req.body: ${req.body}`)
-		let tag = new Tag(name);
-		tag = await tag.save();
-		res.status(201).json({message: "Tag created", tagId: tag[0].insertId});
+		let genre = new Genre(name);
+		genre = await genre.save();
+		res.status(201).json({message: "Genre created", genreId: genre[0].insertId});
 	} catch (error) { 
 		console.log(error);
 		next(error);
 	}
 };
 
-exports.getTagById = async (req, res, next) => { 
+exports.getGenreById = async (req, res, next) => { 
 	try { 
-		let tagId = req.params.id;
-		let [tag, _] = await Tag.findById(tagId);
-		res.status(200).json({user: tag[0]});
+		let genreId = req.params.id;
+		let [genre, _] = await Genre.findById(genreId);
+		res.status(200).json({user: genre[0]});
 	} catch (error) { 
 		console.log(error);
 		next(error);

@@ -9,46 +9,46 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const Survey_tag = require('../models/Survey_tag');
-exports.getAllSurvey_tags = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+const Survey_genre = require('../models/Survey_genre');
+exports.getAllSurvey_genres = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const [survey_tags, _] = yield Survey_tag.findAll();
-        // res.status(200).json({count: survey_tags.length, survey_tags});
-        res.status(200).json({ survey_tags });
+        const [survey_genres, _] = yield Survey_genre.findAll();
+        // res.status(200).json({count: survey_genres.length, survey_genres});
+        res.status(200).json({ survey_genres });
     }
     catch (error) {
         console.log(error);
         next(error);
     }
 });
-exports.createSurvey_tag = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+exports.createSurvey_genre = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        let { tag_id, survey_id } = req.body;
-        let survey_tag = new Survey_tag(tag_id, survey_id);
-        survey_tag = yield survey_tag.save();
-        res.status(201).json({ message: "survey_tag created", survey_id: survey_id, tag_id: tag_id });
+        let { genre_id, survey_id } = req.body;
+        let survey_genre = new Survey_genre(genre_id, survey_id);
+        survey_genre = yield survey_genre.save();
+        res.status(201).json({ message: "survey_genre created", survey_id: survey_id, genre_id: genre_id });
     }
     catch (error) {
         console.log(error);
         next(error);
     }
 });
-exports.getTagsBySurveyId = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+exports.getGenresBySurveyId = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         let survey_id = req.params.survey_id;
-        let [tags, _] = yield Survey_tag.findTagsBySurveyId(survey_id);
-        // res.status(200).json({count: tags.length, tags});
-        res.status(200).json({ tags });
+        let [genres, _] = yield Survey_genre.findGenresBySurveyId(survey_id);
+        // res.status(200).json({count: genres.length, genres});
+        res.status(200).json({ genres });
     }
     catch (error) {
         console.log(error);
         next(error);
     }
 });
-exports.getSurveysByTagId = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+exports.getSurveysByGenreId = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        let tag_id = req.params.tag_id;
-        let [surveys, _] = yield Survey_tag.findSurveysByTagId(tag_id);
+        let genre_id = req.params.genre_id;
+        let [surveys, _] = yield Survey_genre.findSurveysByGenreId(genre_id);
         res.status(200).json({ count: surveys.length, surveys });
     }
     catch (error) {

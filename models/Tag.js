@@ -11,14 +11,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const dbModel = require('../config/db');
 const db = dbModel.promise();
-class Tag {
+class Genre {
     constructor(name) {
         this.name = name;
     }
     save() {
         return __awaiter(this, void 0, void 0, function* () {
             let sql = `
-		INSERT INTO Tag(
+		INSERT INTO Genre(
 			name
 		)
 		VALUES(
@@ -28,12 +28,12 @@ class Tag {
         });
     }
     static findAll() {
-        let sql = 'SELECT * FROM Tag';
+        let sql = 'SELECT * FROM Genre';
         return db.execute(sql);
     }
     static findById(id) {
-        let sql = `SELECT * FROM tag WHERE id=${id}`;
+        let sql = `SELECT * FROM genre WHERE id=${id}`;
         return db.execute(sql);
     }
 }
-module.exports = Tag;
+module.exports = Genre;

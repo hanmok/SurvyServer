@@ -1,44 +1,44 @@
-const Survey_tag = require('../models/Survey_tag');
+const Survey_genre = require('../models/Survey_genre');
 
-exports.getAllSurvey_tags = async (req, res, next) => { 
+exports.getAllSurvey_genres = async (req, res, next) => { 
 	try { 
-		const [survey_tags, _] = await Survey_tag.findAll();
-		// res.status(200).json({count: survey_tags.length, survey_tags});
-		res.status(200).json({survey_tags});
+		const [survey_genres, _] = await Survey_genre.findAll();
+		// res.status(200).json({count: survey_genres.length, survey_genres});
+		res.status(200).json({survey_genres});
 	} catch (error) { 
 		console.log(error); 
 		next(error);
 	}
 };
 
-exports.createSurvey_tag = async(req, res, next) => { 
+exports.createSurvey_genre = async(req, res, next) => { 
 	try { 
-		let {tag_id, survey_id} = req.body;
-		let survey_tag = new Survey_tag(tag_id, survey_id);
-		survey_tag = await survey_tag.save();
-		res.status(201).json({message: "survey_tag created", survey_id: survey_id, tag_id: tag_id})
+		let {genre_id, survey_id} = req.body;
+		let survey_genre = new Survey_genre(genre_id, survey_id);
+		survey_genre = await survey_genre.save();
+		res.status(201).json({message: "survey_genre created", survey_id: survey_id, genre_id: genre_id})
 	} catch (error) { 
 		console.log(error);
 		next(error);
 	}
 }
 
-exports.getTagsBySurveyId = async (req, res, next) => { 
+exports.getGenresBySurveyId = async (req, res, next) => { 
 	try { 
 		let survey_id = req.params.survey_id;
-		let [tags, _] = await Survey_tag.findTagsBySurveyId(survey_id);
-		// res.status(200).json({count: tags.length, tags});
-		res.status(200).json({tags}); 
+		let [genres, _] = await Survey_genre.findGenresBySurveyId(survey_id);
+		// res.status(200).json({count: genres.length, genres});
+		res.status(200).json({genres}); 
 	} catch (error) { 
 		console.log(error);
 		next(error);
 	}
 }
 
-exports.getSurveysByTagId = async (req, res, next) => { 
+exports.getSurveysByGenreId = async (req, res, next) => { 
 	try { 
-		let tag_id = req.params.tag_id;
-		let [surveys, _] = await Survey_tag.findSurveysByTagId(tag_id);
+		let genre_id = req.params.genre_id;
+		let [surveys, _] = await Survey_genre.findSurveysByGenreId(genre_id);
 		res.status(200).json({count: surveys.length, surveys});
 	} catch (error) { 
 		console.log(error);

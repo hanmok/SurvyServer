@@ -9,7 +9,7 @@ const app = express();
 const userRoute = require("./routes/userRoute");
 const surveyRoute = require('./routes/surveyRoute');
 // const requestRoute = require('./routes/requestsRoute');
-const tagRoute = require('./routes/tagRoute');
+const genreRoute = require('./routes/genreRoute');
 const questionTypeRoute = require('./routes/questionTypeRoute');
 const selectableOptionRoute = require('./routes/selectableOptionRoute');
 const sectionRoute = require('./routes/sectionRoute');
@@ -19,7 +19,7 @@ const answerRoute = require('./routes/answerRoute');
 const sectionBridgeRoute = require('./routes/sectionBridgeRoute');
 const question_questionOptionRoute = require('./routes/question_questionOptionRoute');
 const responseRoute = require('./routes/ResponseRoute')
-const surveyTagRoute = require('./routes/surveyTagRoute')
+const surveyGenreRoute = require('./routes/surveyGenreRoute')
 // Middleware
 app.use(express.json()); // parse json bodies in the request object
 
@@ -27,8 +27,8 @@ app.use(express.json()); // parse json bodies in the request object
 app.use('/users', userRoute);
 app.use('/surveys', surveyRoute);
 // app.use('/user-surveys', requestRoute);
-app.use('/survey_tags', surveyTagRoute);
-app.use('/tags', tagRoute);
+app.use('/survey_genres', surveyGenreRoute);
+app.use('/genres', genreRoute);
 app.use('/question-types', questionTypeRoute);
 app.use('/selectable-options', selectableOptionRoute);
 app.use('/sections', sectionRoute);

@@ -5,7 +5,7 @@ const express = require('express');
 const router = express.Router();
 const surveyController = require('../controllers/surveyController');
 const postController = require('../controllers/postController');
-const survey_tagController = require('../controllers/survey_tagController');
+const survey_genreController = require('../controllers/survey_genreController');
 const participateController = require('../controllers/participateController');
 router.route("/")
     .get(surveyController.getAllSurveys)
@@ -22,9 +22,9 @@ router.route("/:survey_id/participated-users")
     .get(participateController.getParticipatedUsersBySurveyId);
 router.route("/:survey_id/participated-users/:user_id")
     .post(participateController.createParticipate);
-// Tag
-router.route("/:survey_id/tags")
-    .get(survey_tagController.getTagsBySurveyId);
-router.route("/tags")
-    .post(survey_tagController.createSurvey_tag);
+// Genre
+router.route("/:survey_id/genres")
+    .get(survey_genreController.getGenresBySurveyId);
+router.route("/genres")
+    .post(survey_genreController.createSurvey_genre);
 module.exports = router;

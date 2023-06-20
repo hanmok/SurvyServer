@@ -1,12 +1,12 @@
 
-const User_tag = require('../models/User_tag');
-// const Tag = require('../models/Tag')
+const User_genre = require('../models/User_genre');
+// const Genre = require('../models/Genre')
 
 
-exports.getAllUser_tags = async (req, res, next) => { 
+exports.getAllUser_genres = async (req, res, next) => { 
 	try { 
-		const [user_tags, _] = await User_tag.findAll();
-		res.status(200).json({count: user_tags.length, user_tags});
+		const [user_genres, _] = await User_genre.findAll();
+		res.status(200).json({count: user_genres.length, user_genres});
 	} catch (error) { 
 		console.log(error);
 		next(error);
@@ -14,22 +14,22 @@ exports.getAllUser_tags = async (req, res, next) => {
 };
 
 
-exports.getTagsByUserId = async (req, res, next) => { 
+exports.getGenresByUserId = async (req, res, next) => { 
 	try { 
 		let user_id = req.params.user_id;
-		console.log(`current user_id by getTagsByUserId: ${user_id}`);
-		let [tags, _] = await User_tag.findTagsByUserId(user_id);
-		res.status(200).json({count: tags.length, tags});
+		console.log(`current user_id by getGenresByUserId: ${user_id}`);
+		let [genres, _] = await User_genre.findGenresByUserId(user_id);
+		res.status(200).json({count: genres.length, genres});
 	} catch (error) { 
 		console.log(error);
 		next(error);
 	}
 }
 
-exports.getUsersByTagId = async (req, res, next) => { 
+exports.getUsersByGenreId = async (req, res, next) => { 
 	try { 
-		let tag_id= req.params.tag_id;
-		let [users, _] = await User_tag.findUsersByTagId(tag_id);
+		let genre_id= req.params.genre_id;
+		let [users, _] = await User_genre.findUsersByGenreId(genre_id);
 		res.status(200).json({count: users.length, users});
 	} catch (error) { 
 		console.log(error);
@@ -37,12 +37,12 @@ exports.getUsersByTagId = async (req, res, next) => {
 	}
 }
 
-exports.createUser_tag = async (req, res, next) => { 
+exports.createUser_genre = async (req, res, next) => { 
 	try { 
-		let {user_id, tag_id} = req.params;
-		let user_tag = new User_tag(user_id, tag_id);
-		user_tag = await user_tag.save();
-		res.status(201).json({"message": "user_tag created", user_id: user_id, tag_id: tag_id});
+		let {user_id, genre_id} = req.params;
+		let user_genre = new User_genre(user_id, genre_id);
+		user_genre = await user_genre.save();
+		res.status(201).json({"message": "user_genre created", user_id: user_id, genre_id: genre_id});
 	} catch (error) { 
 		console.log(error);
 		next(error);
