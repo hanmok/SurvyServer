@@ -11,36 +11,42 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const dbModel = require('../config/db');
 const db = dbModel.promise();
-class User_tag {
-    constructor(user_id, tag_id) {
-        this.user_id = user_id;
-        this.tag_id = tag_id;
+class Survey_genre {
+    constructor(genre_id, survey_id) {
+        this.genre_id = genre_id;
+        this.survey_id = survey_id;
     }
     save() {
         return __awaiter(this, void 0, void 0, function* () {
             let sql = `
-		INSERT INTO User_tag(
-			user_id,
-			tag_id
+		INSERT INTO Survey_genre(
+			genre_id,
+			survey_id
 		) 
 		VALUES(
-			'${this.user_id}',
-			'${this.tag_id}'
+			'${this.genre_id}',
+			'${this.survey_id}'
 		)`;
             return db.execute(sql);
         });
     }
     static findAll() {
-        let sql = `SELECT * FROM User_tag`;
+        let sql = 'SELECT * FROM Survey_genre';
         return db.execute(sql);
     }
-    static findTagsByUserId(user_id) {
-        let sql = `SELECT * FROM User_tag WHERE user_id=${user_id}`;
+    // static findByGenreId(genre_id) { 
+    // 	let sql = `SELECT * FROM Survey_genre WHERE genre_id=${genre_id}`;
+    // 	return db.execute(sql);
+    // }
+    // genre 를 가져와야함.  Join 사용해서. 
+    static findGenresBySurveyId(survey_id) {
+        // let sql = `SELECT * FROM Survey_genre WHERE survey_id=${survey_id}`; // 바뀌어야함. 
+        let sql = `SELECT genre.id as id, genre.name as name FROM genre LEFT JOIN survey_genre ON genre.id =survey_genre.genre_id WHERE survey_id=${survey_id};`;
         return db.execute(sql);
     }
-    static findUsersByTagId(user_id) {
-        let sql = `SELECT * FROM User_tag WHERE user_id=${user_id}`;
+    static findSurveysByGenreId(genre_id) {
+        let sql = `SELECT * FROM Survey_genre WHERE genre_id=${genre_id}`;
         return db.execute(sql);
     }
 }
-module.exports = User_tag;
+module.exports = Survey_genre;

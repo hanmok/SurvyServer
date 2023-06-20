@@ -2,7 +2,7 @@
 
 const express = require('express');
 const userController = require('../controllers/userController');
-const user_tagController = require('../controllers/user_tagController');
+const user_genreController = require('../controllers/user_genreController');
 const postController = require('../controllers/postController');
 const participateController = require('../controllers/participateController');
 const router = express.Router();
@@ -14,12 +14,12 @@ router.route("/")
 router.route("/:id")
 .get(userController.getUserById);
 
-// Tags
-router.route("/:user_id/tags")
-.get(user_tagController.getTagsByUserId);
+// Genres
+router.route("/:user_id/genres")
+.get(user_genreController.getGenresByUserId);
 
-router.route("/:user_id/tags/:tag_id")
-.post(user_tagController.createUser_tag);
+router.route("/:user_id/genres/:genre_id")
+.post(user_genreController.createUser_genre);
 
 // posted Surveys
 router.route('/:user_id/posted-surveys')

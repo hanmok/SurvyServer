@@ -1,14 +1,14 @@
 const dbModel = require('../config/db');
 const db = dbModel.promise();
 
-class Tag { 
+class Genre { 
 	name: string;
 	constructor(name) { 
 		this.name = name
 	}
 	async save() { 
 		let sql = `
-		INSERT INTO Tag(
+		INSERT INTO Genre(
 			name
 		)
 		VALUES(
@@ -18,16 +18,16 @@ class Tag {
 	}
 
 	static findAll() { 
-		let sql = 'SELECT * FROM Tag'
+		let sql = 'SELECT * FROM Genre'
 		return db.execute(sql);
 	}
 
 	static findById(id) { 
-		let sql = `SELECT * FROM tag WHERE id=${id}`;
+		let sql = `SELECT * FROM genre WHERE id=${id}`;
 		return db.execute(sql);
 	}
 }
 
-module.exports = Tag;
+module.exports = Genre;
 
 export {};

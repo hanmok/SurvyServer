@@ -11,42 +11,36 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const dbModel = require('../config/db');
 const db = dbModel.promise();
-class Survey_tag {
-    constructor(tag_id, survey_id) {
-        this.tag_id = tag_id;
-        this.survey_id = survey_id;
+class User_genre {
+    constructor(user_id, genre_id) {
+        this.user_id = user_id;
+        this.genre_id = genre_id;
     }
     save() {
         return __awaiter(this, void 0, void 0, function* () {
             let sql = `
-		INSERT INTO Survey_tag(
-			tag_id,
-			survey_id
+		INSERT INTO User_genre(
+			user_id,
+			genre_id
 		) 
 		VALUES(
-			'${this.tag_id}',
-			'${this.survey_id}'
+			'${this.user_id}',
+			'${this.genre_id}'
 		)`;
             return db.execute(sql);
         });
     }
     static findAll() {
-        let sql = 'SELECT * FROM Survey_tag';
+        let sql = `SELECT * FROM User_genre`;
         return db.execute(sql);
     }
-    // static findByTagId(tag_id) { 
-    // 	let sql = `SELECT * FROM Survey_tag WHERE tag_id=${tag_id}`;
-    // 	return db.execute(sql);
-    // }
-    // tag 를 가져와야함.  Join 사용해서. 
-    static findTagsBySurveyId(survey_id) {
-        // let sql = `SELECT * FROM Survey_tag WHERE survey_id=${survey_id}`; // 바뀌어야함. 
-        let sql = `SELECT tag.id as id, tag.name as name FROM tag LEFT JOIN survey_tag ON tag.id =survey_tag.tag_id WHERE survey_id=${survey_id};`;
+    static findGenresByUserId(user_id) {
+        let sql = `SELECT * FROM User_genre WHERE user_id=${user_id}`;
         return db.execute(sql);
     }
-    static findSurveysByTagId(tag_id) {
-        let sql = `SELECT * FROM Survey_tag WHERE tag_id=${tag_id}`;
+    static findUsersByGenreId(user_id) {
+        let sql = `SELECT * FROM User_genre WHERE user_id=${user_id}`;
         return db.execute(sql);
     }
 }
-module.exports = Survey_tag;
+module.exports = User_genre;
