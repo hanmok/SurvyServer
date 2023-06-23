@@ -13,7 +13,6 @@ const Survey_genre = require('../models/Survey_genre');
 exports.getAllSurvey_genres = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const [survey_genres, _] = yield Survey_genre.findAll();
-        // res.status(200).json({count: survey_genres.length, survey_genres});
         res.status(200).json({ survey_genres });
     }
     catch (error) {
@@ -37,7 +36,6 @@ exports.getGenresBySurveyId = (req, res, next) => __awaiter(void 0, void 0, void
     try {
         let survey_id = req.params.survey_id;
         let [genres, _] = yield Survey_genre.findGenresBySurveyId(survey_id);
-        // res.status(200).json({count: genres.length, genres});
         res.status(200).json({ genres });
     }
     catch (error) {
@@ -49,7 +47,7 @@ exports.getSurveysByGenreId = (req, res, next) => __awaiter(void 0, void 0, void
     try {
         let genre_id = req.params.genre_id;
         let [surveys, _] = yield Survey_genre.findSurveysByGenreId(genre_id);
-        res.status(200).json({ count: surveys.length, surveys });
+        res.status(200).json({ surveys });
     }
     catch (error) {
         console.log(error);

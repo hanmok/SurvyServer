@@ -11,7 +11,7 @@ const User = require('../models/User');
 exports.getAllUsers = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
     try {
         const [users, _] = yield User.findAll();
-        res.status(200).json({ count: users.length, users });
+        res.status(200).json({ users });
     }
     catch (error) {
         console.log(error);

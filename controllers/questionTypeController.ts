@@ -15,7 +15,7 @@ exports.createQuestionType = async (req, res, next) => {
 exports.getAllQuestionTypes = async (req, res, next) => { 
 	try { 
 		const [questionTypes, _] = await QuestionType.findAll();
-		res.status(200).json({count: questionTypes.length, questionTypes});
+		res.status(200).json({questionTypes});
 	} catch (error) { 
 		console.log(error);
 		next(error);

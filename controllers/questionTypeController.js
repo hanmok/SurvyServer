@@ -25,7 +25,7 @@ exports.createQuestionType = (req, res, next) => __awaiter(void 0, void 0, void 
 exports.getAllQuestionTypes = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const [questionTypes, _] = yield QuestionType.findAll();
-        res.status(200).json({ count: questionTypes.length, questionTypes });
+        res.status(200).json({ questionTypes });
     }
     catch (error) {
         console.log(error);

@@ -13,7 +13,7 @@ const Response = require('../models/Response');
 exports.getAllResponses = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const [responses, _] = yield Response.findAll();
-        res.status(200).json({ count: responses.length, responses });
+        res.status(200).json({ responses });
     }
     catch (error) {
         console.log(error);

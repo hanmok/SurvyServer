@@ -14,7 +14,6 @@ const Post = require('../models/Post');
 exports.getAllSurveys = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const [surveys, _] = yield Survey.findAll();
-        // res.status(200).json({count: surveys.length, surveys});
         res.status(200).json({ surveys });
     }
     catch (error) {

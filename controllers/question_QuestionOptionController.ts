@@ -3,7 +3,7 @@ const Question_QuestionOption = require('../models/Question_QuestionOption');
 exports.getAllQuestion_QuestionOptions = async (req, res, next) => {
 	try { 
 		const [question_questionOptions, _] = await Question_QuestionOption.findAll();
-		res.status(200).json({count: question_questionOptions.length, question_questionOptions});
+		res.status(200).json({question_questionOptions});
 	} catch (error) { 
 		console.log(error);
 		next(error);

@@ -20,6 +20,7 @@ router.route("/:user_id/genres/:genre_id")
 // posted Surveys
 router.route('/:user_id/posted-surveys')
     .get(postController.getPostedSurveysByUserId);
+// user ~ posted-survey
 router.route('/posted-survey')
     .post(postController.create_post);
 // Joined surveys

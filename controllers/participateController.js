@@ -10,21 +10,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const Participate = require('../models/Participate');
-// exports.getAllparticipates = async (req, res, next) => { 
-// 	try { 
-// 		const [participates, _] = await Request.findAll();
-// 		res.status(200).json({count: participates.length, participates});
-// 	} catch (error) {
-// 		console.log(error);
-// 		next(error);
-// 	}
-// } 
 exports.getParticipatedSurveysByUserId = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         let user_id = req.params.user_id;
         let [surveys, _] = yield Participate.findByUserId(user_id);
-        // res.status(200).json({surveys: surveys[0]});
-        res.status(200).json({ count: surveys.length, surveys });
+        res.status(200).json({ surveys });
     }
     catch (error) {
         console.log(error);

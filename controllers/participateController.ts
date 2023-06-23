@@ -1,21 +1,10 @@
 const Participate = require('../models/Participate');
 
-// exports.getAllparticipates = async (req, res, next) => { 
-// 	try { 
-// 		const [participates, _] = await Request.findAll();
-// 		res.status(200).json({count: participates.length, participates});
-// 	} catch (error) {
-// 		console.log(error);
-// 		next(error);
-// 	}
-// } 
-
 exports.getParticipatedSurveysByUserId = async(req, res, next) => { 
 	try { 
 		let user_id = req.params.user_id;
 		let [surveys, _] = await Participate.findByUserId(user_id);
-		// res.status(200).json({surveys: surveys[0]});
-		res.status(200).json({count: surveys.length, surveys});
+		res.status(200).json({surveys});
 	} catch (error) { 
 		console.log(error);
 		next(error);

@@ -4,7 +4,7 @@ const Answer = require('../models/Answer');
 exports.getAllAnswers = async (req, res, next) => { 
 	try { 
 		const [answers, _] = await Answer.findAll();
-		res.status(200).json({count: answers.length, answers});
+		res.status(200).json({answers});
 	} catch (error) { 
 		console.log(error);
 		next(error);

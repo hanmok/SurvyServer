@@ -37,7 +37,7 @@ exports.getQuestionById = (req, res, next) => __awaiter(void 0, void 0, void 0, 
 exports.getAllQuestions = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const [questions, _] = yield Question.findAll();
-        res.status(200).json({ count: questions.length, questions });
+        res.status(200).json({ questions });
     }
     catch (error) {
         console.log(error);

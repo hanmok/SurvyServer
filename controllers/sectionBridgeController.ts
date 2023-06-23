@@ -4,7 +4,7 @@ const SectionBridge = require('../models/SectionBridge');
 exports.getAllSectionBridges = async (req, res, next) => { 
 	try { 
 		const [sectionBridges, _] = await SectionBridge.findAll();
-		res.status(200).json({count: sectionBridges.length, sectionBridges});
+		res.status(200).json({sectionBridges});
 	} catch (error) { 
 		console.log(error);
 		next(error);

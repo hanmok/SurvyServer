@@ -15,7 +15,7 @@ exports.createSelectableOption = async (req, res, next) => {
 exports.getAllSelectableOptions = async (req, res, next) => { 
 	try { 
 		const [selectableOptions, _] = await SelectableOption.findAll();
-		res.status(200).json({count: selectableOptions.length, selectableOptions});
+		res.status(200).json({selectableOptions});
 	} catch (error) { 
 		console.log(error);
 		next(error);

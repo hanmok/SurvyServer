@@ -1,21 +1,10 @@
 const Post = require('../models/Post');
 
-// exports.getAllrequests = async (req, res, next) => { 
-// 	try { 
-// 		const [requests, _] = await Request.findAll();
-// 		res.status(200).json({count: requests.length, requests});
-// 	} catch (error) {
-// 		console.log(error);
-// 		next(error);
-// 	}
-// };
-
 exports.getPostedSurveysByUserId = async(req, res, next) => { 
 	try { 
 		let user_id = req.params.user_id;
 		let [surveys, _] = await Post.findByUserId(user_id);
-		// res.status(200).json({surveys: surveys[0]});
-		res.status(200).json({count: surveys.length, surveys});
+		res.status(200).json({surveys});
 	} catch (error) { 
 		console.log(error);
 		next(error);

@@ -23,7 +23,7 @@ exports.createSelectableOption = (req, res, next) => __awaiter(this, void 0, voi
 exports.getAllSelectableOptions = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
     try {
         const [selectableOptions, _] = yield SelectableOption.findAll();
-        res.status(200).json({ count: selectableOptions.length, selectableOptions });
+        res.status(200).json({ selectableOptions });
     }
     catch (error) {
         console.log(error);

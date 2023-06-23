@@ -11,7 +11,7 @@ const SectionBridge = require('../models/SectionBridge');
 exports.getAllSectionBridges = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
     try {
         const [sectionBridges, _] = yield SectionBridge.findAll();
-        res.status(200).json({ count: sectionBridges.length, sectionBridges });
+        res.status(200).json({ sectionBridges });
     }
     catch (error) {
         console.log(error);

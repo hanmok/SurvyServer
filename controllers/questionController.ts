@@ -27,7 +27,7 @@ exports.getQuestionById = async (req, res, next) => {
 exports.getAllQuestions = async (req, res, next) => { 
 	try { 
 		const [questions, _] = await Question.findAll();
-		res.status(200).json({count: questions.length, questions});
+		res.status(200).json({questions});
 	} catch (error) { 
 		console.log(error);
 		next(error);

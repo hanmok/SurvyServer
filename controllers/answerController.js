@@ -14,7 +14,7 @@ const Answer = require('../models/Answer');
 exports.getAllAnswers = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const [answers, _] = yield Answer.findAll();
-        res.status(200).json({ count: answers.length, answers });
+        res.status(200).json({ answers });
     }
     catch (error) {
         console.log(error);

@@ -3,7 +3,7 @@ const Response = require('../models/Response');
 exports.getAllResponses = async (req, res, next) => {
 	try { 
 		const [responses, _] = await Response.findAll();
-		res.status(200).json({count: responses.length, responses});
+		res.status(200).json({responses});
 	} catch (error) {
 		console.log(error);
 		next(error);

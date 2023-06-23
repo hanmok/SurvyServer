@@ -38,7 +38,7 @@ exports.getSectionById = (req, res, next) => __awaiter(void 0, void 0, void 0, f
 exports.getAllSections = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const [sections, _] = yield Section.findAll();
-        res.status(200).json({ count: sections.length, sections });
+        res.status(200).json({ sections });
     }
     catch (error) {
         console.log(error);
