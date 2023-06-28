@@ -36,8 +36,8 @@ exports.getUserById = async (req, res, next) => {
 exports.login = async (req, res, next) => {
 	try { 
 		let {username, password} = req.body;
-		let userId = await User.login(username, password)
-		res.status(200).json({id: userId[0]})
+		let [user, _] = await User.login(username, password)
+		res.status(200).json({user: user[0]});
 	} catch (error) { 
 		console.log(error);
 		next(error);

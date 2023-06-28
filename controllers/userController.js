@@ -44,8 +44,8 @@ exports.getUserById = (req, res, next) => __awaiter(this, void 0, void 0, functi
 exports.login = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
     try {
         let { username, password } = req.body;
-        let userId = yield User.login(username, password);
-        res.status(200).json({ id: userId[0] });
+        let [user, _] = yield User.login(username, password);
+        res.status(200).json({ user: user[0] });
     }
     catch (error) {
         console.log(error);
