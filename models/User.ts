@@ -45,7 +45,7 @@ class User {
 	}
 
 	static login(username, password) { 
-		let sql = `SELECT id FROM user WHERE username='${username} AND password='${password}';`
+		let sql = `SELECT id FROM user WHERE username='${username}' AND password='${password}'`
 		return db.execute(sql);
 	}
 }
