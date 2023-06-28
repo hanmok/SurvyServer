@@ -48,5 +48,9 @@ class User {
         let sql = `SELECT * FROM user WHERE id=${id}`;
         return db.execute(sql);
     }
+    static login(username, password) {
+        let sql = `SELECT id FROM user WHERE username='${username} AND password='${password}';`;
+        return db.execute(sql);
+    }
 }
 module.exports = User;

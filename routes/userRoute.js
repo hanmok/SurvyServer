@@ -10,6 +10,8 @@ const router = express.Router();
 router.route("/")
     .get(userController.getAllUsers)
     .post(userController.createUser);
+router.route("/login")
+    .post(userController.login);
 router.route("/:id")
     .get(userController.getUserById);
 // Genres

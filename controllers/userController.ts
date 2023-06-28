@@ -32,3 +32,14 @@ exports.getUserById = async (req, res, next) => {
 		next(error);
 	}
 }
+
+exports.login = async (req, res, next) => {
+	try { 
+		let {username, password} = req.body;
+		let userId = await User.login(username, password)
+		res.status(200).json({id: userId[0]})
+	} catch (error) { 
+		console.log(error);
+		next(error);
+	}
+}
