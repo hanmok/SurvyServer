@@ -20,11 +20,9 @@ exports.getAllUsers = (req, res, next) => __awaiter(this, void 0, void 0, functi
 });
 exports.createUser = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
     try {
-        // let {username, password, age, isMale} = req.body;
-        let { username, password, isMale } = req.body;
-        let user = new User(username, password, isMale);
+        let { username, password } = req.body;
+        let user = new User(username, password);
         user = yield user.save();
-        // res.status(201).json({message: "User created"});
         res.status(201).json({ message: "User created", id: user[0].insertId });
     }
     catch (error) {

@@ -4,12 +4,10 @@ const db = dbModel.promise();
 class User { 
 	username: string;
 	password: string;
-	isMale: number;
 
-	constructor(username, password, isMale) { 
+	constructor(username, password) { 
 		this.username = username
 		this.password = password
-		this.isMale = isMale
 	}
 
 	async save() { 
@@ -26,13 +24,11 @@ class User {
 		INSERT INTO User(
 			username, 
 			password, 
-			isMale, 
 			registeredAt
 			)
 		VALUES(
 			'${this.username}',
 			'${this.password}',
-			${this.isMale},
 			'${registeredAt}'	
 		)`;
 		return db.execute(sql);

@@ -12,10 +12,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const dbModel = require('../config/db');
 const db = dbModel.promise();
 class User {
-    constructor(username, password, isMale) {
+    constructor(username, password) {
         this.username = username;
         this.password = password;
-        this.isMale = isMale;
     }
     save() {
         return __awaiter(this, void 0, void 0, function* () {
@@ -31,13 +30,11 @@ class User {
 		INSERT INTO User(
 			username, 
 			password, 
-			isMale, 
 			registeredAt
 			)
 		VALUES(
 			'${this.username}',
 			'${this.password}',
-			${this.isMale},
 			'${registeredAt}'	
 		)`;
             return db.execute(sql);
