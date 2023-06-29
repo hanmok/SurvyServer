@@ -15,7 +15,11 @@ exports.createUser = async (req, res, next) => {
 		let {username, password} = req.body;
 		let user = new User(username, password);
 		user = await user.save();
-		res.status(201).json({message: "User created", id: user[0].insertId});
+		let createdId = user[0].insertId
+		// res.status(201).json({message: "User created", id: user[0].insertId});
+		// res.status(201).json({user: user})
+		let [createdUser, _] = await user.findById(createdId)
+		res.status(200).json({user: createdUser})
 	} catch (error) { 
 		console.log(error);
 		next(error);
