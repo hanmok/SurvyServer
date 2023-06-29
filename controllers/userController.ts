@@ -18,7 +18,7 @@ exports.createUser = async (req, res, next) => {
 		let createdId = user[0].insertId
 		// res.status(201).json({message: "User created", id: user[0].insertId});
 		// res.status(201).json({user: user})
-		let [createdUser, _] = await user.findById(createdId)
+		let [createdUser, _] = await User.findById(createdId)
 		res.status(200).json({user: createdUser})
 	} catch (error) { 
 		console.log(error);
