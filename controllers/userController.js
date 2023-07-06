@@ -41,8 +41,11 @@ exports.login = (req, res, next) => __awaiter(this, void 0, void 0, function* ()
     try {
         let { username, password } = req.body;
         // const accessToken = jwt.sign({username, password}, process.env.ACCESS_TOKEN_SECRET, {expiresIn: '15s'})  
-        const accessToken = generateAccessToken(username);
-        const refreshToken = generateRefreshToken(username);
+        // const accessToken = generateAccessToken(username);
+        // const refreshToken = generateRefreshToken(username);
+        let myUser = { name: username };
+        const accessToken = generateAccessToken(myUser);
+        const refreshToken = generateRefreshToken(myUser);
         // refreshToken 은 DB 에 따로 처리하기. 
         let [user, _] = yield User.login(username, password); // user 가 있을수도, 없을수도.. 확인 필요. 
         // AccessToken, refreshToken update 
@@ -87,7 +90,9 @@ exports.autoLogin = (req, res, next) => __awaiter(this, void 0, void 0, function
         // verify 과정이 없는데 ? 그냥 이렇게 해도 괜찮은거 맞아? 
         let some = RefreshToken.find(username, refreshToken);
         if (some !== null) { // refreshToken 존재 시, accessToken 발급 후 return
-            let accessToken = generateAccessToken(username);
+            let myUser = { name: username };
+            // let accessToken = generateAccessToken(username)
+            let accessToken = generateAccessToken(myUser);
             // accessToken 을 User Data 에도 넣어주기. 
             // let _ = await User.updateAccessToken(username, accessToken, expiresAt)
             // let _ = await User.updateAccessToken(username, accessToken)
@@ -103,9 +108,11 @@ exports.autoLogin = (req, res, next) => __awaiter(this, void 0, void 0, function
         next(error);
     }
 });
-function generateAccessToken(username) {
-    return jwt.sign(username, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1d' });
+// function generateAccessToken(username) { 
+function generateAccessToken(user) {
+    // return jwt.sign(username, process.env.ACCESS_TOKEN_SECRET, {expiresIn: '1d'})
+    return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1d' });
 }
-function generateRefreshToken(username) {
-    return jwt.sign(username, process.env.REFRESH_TOKEN_SECRET, { expiresIn: '180d' });
+function generateRefreshToken(user) {
+    return jwt.sign(user, process.env.REFRESH_TOKEN_SECRET, { expiresIn: '180d' });
 }

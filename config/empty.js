@@ -41,8 +41,11 @@ exports.login = (req, res, next) => __awaiter(this, void 0, void 0, function* ()
     try {
         let { username, password } = req.body;
         // const accessToken = jwt.sign({username, password}, process.env.ACCESS_TOKEN_SECRET, {expiresIn: '15s'})  
-        const accessToken = generateAccessToken(username);
-        const refreshToken = generateRefreshToken(username);
+		let myUser = {name: username}
+        // const accessToken = generateAccessToken(username);
+        // const refreshToken = generateRefreshToken(username);
+		const accessToken = generateAccessToken(myUser);
+        const refreshToken = generateRefreshToken(myUser);
         // refreshToken 은 DB 에 따로 처리하기. 
         let [user, _] = yield User.login(username, password); // user 가 있을수도, 없을수도.. 확인 필요. 
         // AccessToken, refreshToken update 
@@ -103,8 +106,6 @@ exports.autoLogin = (req, res, next) => __awaiter(this, void 0, void 0, function
         next(error);
     }
 });
-
-// s, m, h, d, w, M, y
 function generateAccessToken(username) {
     return jwt.sign(username, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1d' });
 }
