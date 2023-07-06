@@ -111,8 +111,10 @@ exports.autoLogin = (req, res, next) => __awaiter(this, void 0, void 0, function
 // function generateAccessToken(username) { 
 function generateAccessToken(user) {
     // return jwt.sign(username, process.env.ACCESS_TOKEN_SECRET, {expiresIn: '1d'})
-    return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1d' });
+    // return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {expiresIn: '1d'})
+    return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
 }
 function generateRefreshToken(user) {
-    return jwt.sign(user, process.env.REFRESH_TOKEN_SECRET, { expiresIn: '180d' });
+    // return jwt.sign(user, process.env.REFRESH_TOKEN_SECRET, {expiresIn: '180d'})
+    return jwt.sign(user, process.env.REFRESH_TOKEN_SECRET);
 }

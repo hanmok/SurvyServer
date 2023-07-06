@@ -103,10 +103,12 @@ exports.autoLogin = async (req, res, next) => {
 // function generateAccessToken(username) { 
 	function generateAccessToken(user) { 
 	// return jwt.sign(username, process.env.ACCESS_TOKEN_SECRET, {expiresIn: '1d'})
-	return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {expiresIn: '1d'})
+	// return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {expiresIn: '1d'})
+	return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET)
 }
 
 function generateRefreshToken(user) {  // 음.. 해당 user 의 refreshToken 이 있는지 먼저 확인해야하나? 
-	return jwt.sign(user, process.env.REFRESH_TOKEN_SECRET, {expiresIn: '180d'})
+	// return jwt.sign(user, process.env.REFRESH_TOKEN_SECRET, {expiresIn: '180d'})
+	return jwt.sign(user, process.env.REFRESH_TOKEN_SECRET)
 }
 
