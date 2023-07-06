@@ -30,6 +30,7 @@ class Refresh_Token {
             let end_at = `${yyyy}-${MM}-${dd} ${HH}:${mm}:${sec}`;
             let sql = `
 		INSERT INTO refresh_token(
+			username
 			refreshToken, 
 			end_at
 		)

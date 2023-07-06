@@ -25,6 +25,7 @@ class Refresh_Token {
 
 		let sql = `
 		INSERT INTO refresh_token(
+			username
 			refreshToken, 
 			end_at
 		)
