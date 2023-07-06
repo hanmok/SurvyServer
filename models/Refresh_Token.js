@@ -27,10 +27,9 @@ class Refresh_Token {
             let HH = endedDate.getHours();
             let mm = endedDate.getMinutes();
             let sec = endedDate.getSeconds();
-            let end_at = `${yyyy}-${MM}-${dd} $HH2}:${mm}:${sec}`;
+            let end_at = `${yyyy}-${MM}-${dd} ${HH}:${mm}:${sec}`;
             let sql = `
 		INSERT INTO refresh_token(
-			user_id, 
 			refreshToken, 
 			end_at
 		)
