@@ -15,7 +15,10 @@ router.route("/login")
 .post(userController.login);
 
 router.route("/logout")
-.post(userController.logout)
+.post(userController.logout);
+
+router.route("/auto_login")
+.post(userController.autoLogin);
 
 router.route("/:id")
 .get(userController.getUserById);
