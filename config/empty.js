@@ -103,6 +103,8 @@ exports.autoLogin = (req, res, next) => __awaiter(this, void 0, void 0, function
         next(error);
     }
 });
+
+// s, m, h, d, w, M, y
 function generateAccessToken(username) {
     return jwt.sign(username, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1d' });
 }
