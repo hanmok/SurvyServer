@@ -12,6 +12,8 @@ router.route("/")
     .post(userController.createUser);
 router.route("/login")
     .post(userController.login);
+router.route("/logout")
+    .post(userController.logout);
 router.route("/:id")
     .get(userController.getUserById);
 // Genres

@@ -14,6 +14,9 @@ router.route("/")
 router.route("/login")
 .post(userController.login);
 
+router.route("/logout")
+.post(userController.logout)
+
 router.route("/:id")
 .get(userController.getUserById);
 
