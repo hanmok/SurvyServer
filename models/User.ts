@@ -44,8 +44,21 @@ class User {
 		return db.execute(sql);
 	}
 
+	// static updateAccessToken(username, accessToken) { 
+	// 	let expiresAt = new Date();
+	// 	expiresAt.setDate(expiresAt.getDay() + 1);
+
+	// 	let sql = `UPDATE user SET access_token='${accessToken}, access_token_expires_at='${expiresAt} WHERE username='${username}`
+	// 	return db.execute(sql);
+	// }
+
 	static login(username, password) { 
 		let sql = `SELECT * FROM user WHERE username='${username}' AND password='${password}'`
+		return db.execute(sql);
+	}
+
+	static logout(username) { 
+		let sql = `SELEECT * FROM user WHERE username='${username}'`
 		return db.execute(sql);
 	}
 }
