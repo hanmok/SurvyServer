@@ -89,6 +89,7 @@ exports.autoLogin = async (req, res, next) => {
 			// accessToken 을 User Data 에도 넣어주기. 
 			// let _ = await User.updateAccessToken(username, accessToken, expiresAt)
 			// let _ = await User.updateAccessToken(username, accessToken)
+			
 			res.status(201).json({accessToken: accessToken});
 		} else { 
 			// 토큰 만료
@@ -111,4 +112,3 @@ function generateRefreshToken(user) {  // 음.. 해당 user 의 refreshToken 이
 	// return jwt.sign(user, process.env.REFRESH_TOKEN_SECRET, {expiresIn: '180d'})
 	return jwt.sign(user, process.env.REFRESH_TOKEN_SECRET)
 }
-

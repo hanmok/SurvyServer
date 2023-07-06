@@ -4,6 +4,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 require("dotenv").config(); // ALLOWS ENVIRONMENT VARIABLES TO BE SET ON PROCESS.ENV SHOULD BE AT TOP
 const express = require("express");
 const app = express();
+const jwt = require('jsonwebtoken');
 const userRoute = require("./routes/userRoute");
 const surveyRoute = require('./routes/surveyRoute');
 // const requestRoute = require('./routes/requestsRoute');
@@ -19,6 +20,8 @@ const responseRoute = require('./routes/ResponseRoute');
 const surveyGenreRoute = require('./routes/surveyGenreRoute');
 // Middleware
 app.use(express.json()); // parse json bodies in the request object
+// AccessToken check 
+app.use(authenticateToken);
 // Redirect requests to endpoint starting with /posts to postRoutes.js
 app.use('/users', userRoute);
 app.use('/surveys', surveyRoute);
@@ -56,3 +59,16 @@ app.use((err, req, res, next) => {
 const PORT = process.env.PORT || 4000;
 console.log(`port: ${PORT}`);
 app.listen(PORT, () => console.log(`Server running on PORT ${PORT}`));
+function authenticateToken(req, res, next) {
+    // form:: Bearer Token 
+    const authHeader = req.headers["authorization"];
+    const accessToken = authHeader && authHeader.split(' ')[1];
+    if (accessToken == null)
+        return res.sendStatus(401);
+    jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+        if (err)
+            return res.sendStatus(403); // no longer valid
+        req.user = user;
+        next();
+    });
+}
