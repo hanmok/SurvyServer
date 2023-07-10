@@ -39,7 +39,7 @@ class Refresh_Token {
 
 	// 결과가 있는지 없는지 확인은 어떻게 하지? 
 	static find(username, refreshToken) { 
-		let sql = `SELECT * FROM refresh_token WHERE username='${username}' AND refreshToken = '${refreshToken}' AND end_at < NOW()`
+		let sql = `SELECT * FROM refresh_token WHERE username='${username}' AND refreshToken = '${refreshToken}' AND end_at > NOW()`
 		return db.execute(sql);
 	}
 
