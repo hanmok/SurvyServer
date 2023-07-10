@@ -33,7 +33,7 @@ class User {
 			registeredAt
 			)
 		VALUES(
-			'${this.username}',
+			'${this.username}', 
 			'${this.password}',
 			'${registeredAt}'	
 		)`;

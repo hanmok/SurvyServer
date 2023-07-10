@@ -20,7 +20,6 @@ exports.createUser = async (req, res, next) => {
 		let user = new User(username, password);
 		user = await user.save();
 		let createdId = user[0].insertId
-
 		let [createdUser, _] = await User.findById(createdId) 
 		res.status(200).json({user: createdUser[0], accessToken: "" })
 	} catch (error) { 
@@ -47,9 +46,10 @@ exports.login = async (req, res, next) => {
 	}
 }
 
-// Access Token 도 무효화 시키기, 이때, Token 체크 해야함.
+// Access Token 도 무효화 시키기, 이때, Token 체크 해야함. 
 exports.logout = async (req, res, next) => { 
 	try { 
+		// accessToken 확인해야함. 
 		let {username} = req.body;
 		let _ = await RefreshToken.delete(username)
 		res.status(200).json({message: `refresh token deleted, username: '${username} has logged out.`})
@@ -70,19 +70,17 @@ exports.getUserById = async (req, res, next) => {
 	}
 }
 
-exports.autoLogin = async (req, res, next) => {
+exports.regenerateAccessToken = async (req, res, next) => {
 	try { 
 		let {username, refreshToken} = req.body;
-		// refreshToken 존재하는지 확인할 것. 
-		// verify 과정이 없는데 ? 그냥 이렇게 해도 괜찮은거 맞아? 
-		let some = RefreshToken.find(username, refreshToken);
-		if (some !== null) { // refreshToken 존재 시, accessToken 발급 후 return
-			let myUser = { name: username }
+
+		let validRefreshToken = RefreshToken.find(username, refreshToken);
+		if (validRefreshToken !== null) { // refreshToken 존재 시, accessToken 발급 후 return
+			let myUser = {name: username}
 			let accessToken = generateAccessToken(myUser)
 			let [user, _] = await User.findByUsername(username)
 			res.status(201).json({user: user[0], accessToken: accessToken});
 		} else { 
-			// 토큰 만료
 			res.status(400).json({message: "Token expired."})
 		}
 	} catch (error) { 
@@ -91,7 +89,6 @@ exports.autoLogin = async (req, res, next) => {
 	}
 }
 
-
 function generateAccessToken(user) { 
 	return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET)
 }
@@ -99,4 +96,19 @@ function generateAccessToken(user) {
 function generateRefreshToken(user) {  // 음.. 해당 user 의 refreshToken 이 있는지 먼저 확인해야하나? 
 	// return jwt.sign(user, process.env.REFRESH_TOKEN_SECRET, {expiresIn: '180d'})
 	return jwt.sign(user, process.env.REFRESH_TOKEN_SECRET)
+}
+
+// 이거.. 어떻게 바꿔야하지? 
+function authenticateToken(req, res, next) { 
+	// form:: Bearer Token 
+	const authHeader = req.headers["authorization"]
+	const accessToken = authHeader && authHeader.split(' ')[1]
+
+	if (accessToken == null) return res.sendStatus(401)
+
+	jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET, (err, user) => { 
+	  if (err) return res.sendStatus(403) // no longer valid
+	  req.user = user
+	  next()
+	})
 }

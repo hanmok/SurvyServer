@@ -21,18 +21,18 @@ const sectionBridgeRoute = require('./routes/sectionBridgeRoute');
 const question_questionOptionRoute = require('./routes/question_questionOptionRoute');
 const responseRoute = require('./routes/ResponseRoute')
 const surveyGenreRoute = require('./routes/surveyGenreRoute')
+
 // Middleware
 app.use(express.json()); // parse json bodies in the request object
+
+app.use('/users', userRoute); // 여기에 두어야 authenticateToken 적용되지 않음 
+
 // AccessToken check 
-
-app.use('/users', userRoute);
-
 app.use(authenticateToken);
 
 // Redirect requests to endpoint starting with /posts to postRoutes.js 
 
 app.use('/surveys', surveyRoute);
-// app.use('/user-surveys', requestRoute);
 app.use('/survey_genres', surveyGenreRoute);
 app.use('/genres', genreRoute);
 app.use('/question-types', questionTypeRoute);
@@ -54,10 +54,15 @@ app.get('/test', (req, res) => {
 
 // app.use
 // Global Error Handler. IMPORTANT function params MUST start with err
+
 app.use((err, req, res, next) => {
+  console.log('path: ', req.path);
+  console.log('method: ', req.method);
+
   console.log(err.stack);
   console.log(err.name);
   console.log(err.code);
+
   res.status(500).json({
     message: "Something went really wrong",
     stack: err.stack,
@@ -77,10 +82,21 @@ function authenticateToken(req, res, next) {
   if (accessToken == null) return res.sendStatus(401)
 
   jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET, (err, user) => { 
-    if (err) return res.sendStatus(403) // no longer valid
+    // 이걸 여기서 하는게 맞아? 음.. RefreshToken 도 봐야 할 것 같은데 ? 
+    // 확인하고, accessToken 이 유효하지 않은 경우 refreshToken 뒤져본 후, 유효하면 재발급. 
+    // 그 후에 같은 함수 다시 호출 할 수 있나 ? 여기서 가능할 것 같긴 한데... 음.. 
+
+    if (err) return res.sendStatus(403) // no longer valid 403: 
+    // if (err) { 
+    //   generateAccessToken(user)
+    // }
     req.user = user
     next()
   })
+}
+
+function generateAccessToken(user) { 
+	return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET)
 }
 
 export {};

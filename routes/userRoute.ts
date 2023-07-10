@@ -17,8 +17,8 @@ router.route("/login")
 router.route("/logout")
 .post(userController.logout);
 
-router.route("/auto_login")
-.post(userController.autoLogin);
+router.route("/regenerate_access_token")
+.post(userController.regenerateAccessToken);
 
 router.route("/:id")
 .get(userController.getUserById);

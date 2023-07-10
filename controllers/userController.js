@@ -54,9 +54,10 @@ exports.login = (req, res, next) => __awaiter(this, void 0, void 0, function* ()
         next(error);
     }
 });
-// Access Token 도 무효화 시키기, 이때, Token 체크 해야함.
+// Access Token 도 무효화 시키기, 이때, Token 체크 해야함. 
 exports.logout = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
     try {
+        // accessToken 확인해야함. 
         let { username } = req.body;
         let _ = yield RefreshToken.delete(username);
         res.status(200).json({ message: `refresh token deleted, username: '${username} has logged out.` });
@@ -77,20 +78,17 @@ exports.getUserById = (req, res, next) => __awaiter(this, void 0, void 0, functi
         next(error);
     }
 });
-exports.autoLogin = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+exports.regenerateAccessToken = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
     try {
         let { username, refreshToken } = req.body;
-        // refreshToken 존재하는지 확인할 것. 
-        // verify 과정이 없는데 ? 그냥 이렇게 해도 괜찮은거 맞아? 
-        let some = RefreshToken.find(username, refreshToken);
-        if (some !== null) { // refreshToken 존재 시, accessToken 발급 후 return
+        let validRefreshToken = RefreshToken.find(username, refreshToken);
+        if (validRefreshToken !== null) { // refreshToken 존재 시, accessToken 발급 후 return
             let myUser = { name: username };
             let accessToken = generateAccessToken(myUser);
             let [user, _] = yield User.findByUsername(username);
             res.status(201).json({ user: user[0], accessToken: accessToken });
         }
         else {
-            // 토큰 만료
             res.status(400).json({ message: "Token expired." });
         }
     }
@@ -105,4 +103,18 @@ function generateAccessToken(user) {
 function generateRefreshToken(user) {
     // return jwt.sign(user, process.env.REFRESH_TOKEN_SECRET, {expiresIn: '180d'})
     return jwt.sign(user, process.env.REFRESH_TOKEN_SECRET);
+}
+// 이거.. 어떻게 바꿔야하지? 
+function authenticateToken(req, res, next) {
+    // form:: Bearer Token 
+    const authHeader = req.headers["authorization"];
+    const accessToken = authHeader && authHeader.split(' ')[1];
+    if (accessToken == null)
+        return res.sendStatus(401);
+    jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+        if (err)
+            return res.sendStatus(403); // no longer valid
+        req.user = user;
+        next();
+    });
 }
