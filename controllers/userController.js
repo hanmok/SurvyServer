@@ -89,10 +89,10 @@ exports.regenerateAccessToken = (req, res, next) => __awaiter(this, void 0, void
             let myUser = { name: username };
             let accessToken = generateAccessToken(myUser);
             let [user, _] = yield User.findByUsername(username);
-            res.status(201).json({ user: user[0], accessToken: accessToken, etc: validRefreshToken });
+            res.status(201).json({ user: user[0], accessToken: accessToken });
         }
         else {
-            res.status(400).json({ message: "Token expired.", etc: validRefreshToken });
+            res.status(400).json({ message: "Token expired." });
         }
     }
     catch (error) {
