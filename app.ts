@@ -24,12 +24,13 @@ const surveyGenreRoute = require('./routes/surveyGenreRoute')
 // Middleware
 app.use(express.json()); // parse json bodies in the request object
 // AccessToken check 
+
+app.use('/users', userRoute);
+
 app.use(authenticateToken);
 
+// Redirect requests to endpoint starting with /posts to postRoutes.js 
 
-
-// Redirect requests to endpoint starting with /posts to postRoutes.js
-app.use('/users', userRoute);
 app.use('/surveys', surveyRoute);
 // app.use('/user-surveys', requestRoute);
 app.use('/survey_genres', surveyGenreRoute);
@@ -64,8 +65,7 @@ app.use((err, req, res, next) => {
   });
 });
 
-// Listen on pc port
-// const PORT = process.env.PORT || 3000;
+// Listen on pc port 
 const PORT = process.env.PORT || 4000;
 console.log(`port: ${PORT}`)
 app.listen(PORT, () => console.log(`Server running on PORT ${PORT}`));

@@ -33,16 +33,11 @@ exports.createUser = async (req, res, next) => {
 exports.login = async (req, res, next) => {
 	try { 
 		let {username, password} = req.body;
-		// const accessToken = jwt.sign({username, password}, process.env.ACCESS_TOKEN_SECRET, {expiresIn: '15s'})  
-		// const accessToken = generateAccessToken(username);
-		// const refreshToken = generateRefreshToken(username);
 		let myUser = {name: username}
 		const accessToken = generateAccessToken(myUser);
 		const refreshToken = generateRefreshToken(myUser);
 		// refreshToken 은 DB 에 따로 처리하기. 
 		let [user, _] = await User.login(username, password); // user 가 있을수도, 없을수도.. 확인 필요. 
-		// AccessToken, refreshToken update 
-		// let __ = await User.updateAccessToken(username, accessToken);
 		let newRefreshToken = new RefreshToken(username, refreshToken);
 		newRefreshToken = await newRefreshToken.save();
 		res.status(200).json({user: user[0], accessToken: accessToken, refreshToken: refreshToken});
@@ -52,11 +47,10 @@ exports.login = async (req, res, next) => {
 	}
 }
 
-// Access Token 도 무효화 시키기
+// Access Token 도 무효화 시키기, 이때, Token 체크 해야함.
 exports.logout = async (req, res, next) => { 
 	try { 
 		let {username} = req.body;
-		// let [refreshToken, _] = await RefreshToken.delete(username);
 		let _ = await RefreshToken.delete(username)
 		res.status(200).json({message: `refresh token deleted, username: '${username} has logged out.`})
 	} catch (error) { 
