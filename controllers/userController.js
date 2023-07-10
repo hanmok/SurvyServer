@@ -82,7 +82,9 @@ exports.regenerateAccessToken = (req, res, next) => __awaiter(this, void 0, void
     try {
         let { username, refreshToken } = req.body;
         let validRefreshToken = RefreshToken.find(username, refreshToken);
-        if (validRefreshToken !== null) { // refreshToken 존재 시, accessToken 발급 후 return
+        // 이렇게 확인하면 확인이 안됨. Data 가 없어도 null 이 아님. 
+        // if (validRefreshToken !== null) { // refreshToken 존재 시, accessToken 발급 후 return
+        if (validRefreshToken.length !== 0) { // refreshToken 존재 시, accessToken 발급 후 return
             let myUser = { name: username };
             let accessToken = generateAccessToken(myUser);
             let [user, _] = yield User.findByUsername(username);
