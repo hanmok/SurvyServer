@@ -40,7 +40,7 @@ class User {
 	}
 
 	static findByUsername(username) { 
-		let sql = `SELECT * FROM user WHERE username=${username}`
+		let sql = `SELECT * FROM user WHERE username='${username}'`
 		return db.execute(sql);
 	}
 
@@ -48,7 +48,7 @@ class User {
 		let sql = `SELECT * FROM user WHERE id=${id}`
 		return db.execute(sql);
 	}
-
+	
 	// static updateAccessToken(username, accessToken) { 
 	// 	let expiresAt = new Date();
 	// 	expiresAt.setDate(expiresAt.getDay() + 1);
