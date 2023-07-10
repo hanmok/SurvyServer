@@ -84,14 +84,12 @@ exports.regenerateAccessToken = (req, res, next) => __awaiter(this, void 0, void
         let [validRefreshToken, _] = yield RefreshToken.find(username, refreshToken);
         // 이렇게 확인하면 확인이 안됨. Data 가 없어도 null 이 아님. 
         // if (validRefreshToken !== null) { // refreshToken 존재 시, accessToken 발급 후 return
-        // let parsed = JSON.parse(validRefreshToken)
-        // let isEmpty = Object.keys(parsed).length === 0
         let isEmpty = validRefreshToken.length === 0;
-        if (isEmpty) { // refreshToken 존재 시, accessToken 발급 후 return
+        if (!isEmpty) { // refreshToken 존재 시, accessToken 발급 후 return
             let myUser = { name: username };
             let accessToken = generateAccessToken(myUser);
             let [user, _] = yield User.findByUsername(username);
-            res.status(201).json({ user: user[0], accessToken: accessToken, extra: validRefreshToken, isEmpty: isEmpty });
+            res.status(201).json({ user: user[0], accessToken: accessToken });
         }
         else {
             res.status(400).json({ message: "Token expired." });
