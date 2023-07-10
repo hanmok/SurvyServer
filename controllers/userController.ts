@@ -77,7 +77,9 @@ exports.regenerateAccessToken = async (req, res, next) => {
 		let validRefreshToken = RefreshToken.find(username, refreshToken);
 		// 이렇게 확인하면 확인이 안됨. Data 가 없어도 null 이 아님. 
 		// if (validRefreshToken !== null) { // refreshToken 존재 시, accessToken 발급 후 return
-		if (validRefreshToken.length !== 0) { // refreshToken 존재 시, accessToken 발급 후 return
+		let parsed = JSON.parse(validRefreshToken)
+		let isEmpty = Object.keys(parsed).length === 0
+		if (isEmpty) { // refreshToken 존재 시, accessToken 발급 후 return
 			let myUser = {name: username}
 			let accessToken = generateAccessToken(myUser)
 			let [user, _] = await User.findByUsername(username)
