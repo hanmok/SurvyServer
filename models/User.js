@@ -44,6 +44,10 @@ class User {
         let sql = "SELECT * FROM user";
         return db.execute(sql);
     }
+    static findByUsername(username) {
+        let sql = `SELECT * FROM user WHERE username=${username}`;
+        return db.execute(sql);
+    }
     static findById(id) {
         let sql = `SELECT * FROM user WHERE id=${id}`;
         return db.execute(sql);

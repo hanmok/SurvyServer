@@ -78,13 +78,9 @@ exports.autoLogin = async (req, res, next) => {
 		let some = RefreshToken.find(username, refreshToken);
 		if (some !== null) { // refreshToken 존재 시, accessToken 발급 후 return
 			let myUser = { name: username }
-			// let accessToken = generateAccessToken(username)
 			let accessToken = generateAccessToken(myUser)
-			// accessToken 을 User Data 에도 넣어주기. 
-			// let _ = await User.updateAccessToken(username, accessToken, expiresAt)
-			// let _ = await User.updateAccessToken(username, accessToken)
-			
-			res.status(201).json({accessToken: accessToken});
+			let [user, _] = await User.findByUsername(username)
+			res.status(201).json({user: user[0], accessToken: accessToken});
 		} else { 
 			// 토큰 만료
 			res.status(400).json({message: "Token expired."})
@@ -95,10 +91,8 @@ exports.autoLogin = async (req, res, next) => {
 	}
 }
 
-// function generateAccessToken(username) { 
-	function generateAccessToken(user) { 
-	// return jwt.sign(username, process.env.ACCESS_TOKEN_SECRET, {expiresIn: '1d'})
-	// return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {expiresIn: '1d'})
+
+function generateAccessToken(user) { 
 	return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET)
 }
 
