@@ -12,10 +12,10 @@ exports.getAllResponses = async (req, res, next) => {
 
 exports.createResponse = async (req, res, next) => { 
 	try {
-		let {question_id, selectableOption_id, user_id, timeTookInSec, answerText} = req.body;
-		let response = new Response(question_id, selectableOption_id, user_id, timeTookInSec, answerText);
+		let {question_id, selectableOption_id, user_id, survey_id} = req.body;
+		let response = new Response(question_id, selectableOption_id, user_id, survey_id);
 		response = await response.save();
-		res.status(201).json({message: "Response Created", question_id: question_id, selectableOption_id: selectableOption_id, user_id: user_id});
+		res.status(201).json({message: "Response Created"});
 	} catch (error) { 
 		console.log(error);
 		next(error);

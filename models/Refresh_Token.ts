@@ -43,6 +43,11 @@ class Refresh_Token {
 		return db.execute(sql); 
 	}
 
+	static findUsingName(username) { 
+		let sql = `SELECT * FROM refresh_token WHERE username='${username} AND end_at > NOW()`
+		return db.execute(sql);
+	}
+
 	static delete(username) { 
 		let sql = `DELETE FROM refresh_token WHERE username='${username}'`
 		return db.execute(sql);

@@ -19,7 +19,7 @@ router.route("/:id")
 // router.route("/:survey_id/users")
 // .get(postController.getUserByPostedSurveyId)
 
-router.route("/:survey_id/posted-user")
+ router.route("/:survey_id/posted-user")
 .get(postController.getUserByPostedSurveyId)
 
 // User, Participated Surveys

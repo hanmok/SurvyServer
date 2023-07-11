@@ -37,9 +37,18 @@ exports.login = async (req, res, next) => {
 		const refreshToken = generateRefreshToken(myUser);
 		// refreshToken 은 DB 에 따로 처리하기. 
 		let [user, _] = await User.login(username, password); // user 가 있을수도, 없을수도.. 확인 필요. 
-		let newRefreshToken = new RefreshToken(username, refreshToken);
-		newRefreshToken = await newRefreshToken.save(); // 여기서 에러 생길 수 있음.
-		res.status(200).json({user: user[0], accessToken: accessToken, refreshToken: refreshToken});
+
+		let [validRefreshToken, __] = await RefreshToken.findUsingName(username)
+		let isEmpty = validRefreshToken.length === 0
+		if (isEmpty) { 
+			let newRefreshToken = new RefreshToken(username, refreshToken);
+			newRefreshToken = await newRefreshToken.save(); // 여기서 에러 생길 수 있음.
+			res.status(200).json({user: user[0], accessToken: accessToken, refreshToken: refreshToken});
+		} else { 
+			res.status(200).json({user: user[0], accessToken: accessToken});
+		}
+
+		
 	} catch (error) { 
 		console.log(error);
 		// next(error);
