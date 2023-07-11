@@ -26,7 +26,10 @@ router.route("/:survey_id/posted-user")
 router.route("/:survey_id/participated-users")
 .get(participateController.getParticipatedUsersBySurveyId)
 
-router.route("/:survey_id/participated-users/:user_id")
+// router.route("/:survey_id/participated-users/:user_id")
+// .post(participateController.createParticipate)
+
+router.route("/participated-users")
 .post(participateController.createParticipate)
 
 // Genre

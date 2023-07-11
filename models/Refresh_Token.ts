@@ -47,10 +47,6 @@ class Refresh_Token {
 		let sql = `DELETE FROM refresh_token WHERE username='${username}'`
 		return db.execute(sql);
 	}
-
-	static generateAccessToken(refreshToken) { 
-		
-	}
 }
 
 module.exports = Refresh_Token;

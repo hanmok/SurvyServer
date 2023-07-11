@@ -24,7 +24,8 @@ exports.getParticipatedUsersBySurveyId = async (req, res, next) => {
 
 exports.createParticipate = async(req, res, next) => { 
 	try { 
-		let {user_id, survey_id} = req.params;
+		// let {user_id, survey_id} = req.params; 
+		let {user_id, survey_id} = req.body;
 		let participate = new Participate(user_id, survey_id);
 		participate = await participate.save(); 
 		res.status(201).json({message: "participate created", user_id: user_id, survey_id: survey_id});
@@ -33,7 +34,5 @@ exports.createParticipate = async(req, res, next) => {
 		next(error);
 	}
 }
-
-
 
 export {};

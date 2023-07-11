@@ -97,7 +97,6 @@ exports.regenerateAccessToken = (req, res, next) => __awaiter(this, void 0, void
     catch (error) {
         console.log(error);
         next(error);
-        // dd
     }
 });
 function generateAccessToken(user) {

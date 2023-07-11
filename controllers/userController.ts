@@ -74,7 +74,6 @@ exports.getUserById = async (req, res, next) => {
 exports.regenerateAccessToken = async (req, res, next) => {
 	try { 
 		let {username, refreshToken} = req.body;
-
 		let [validRefreshToken, _] = await RefreshToken.find(username, refreshToken);
 		let isEmpty = validRefreshToken.length === 0
 		
@@ -88,8 +87,7 @@ exports.regenerateAccessToken = async (req, res, next) => {
 		}
 	} catch (error) { 
 		console.log(error);
-		next(error);
-		// dd
+		next(error); 
 	}
 }
 
