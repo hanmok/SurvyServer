@@ -38,11 +38,12 @@ exports.login = async (req, res, next) => {
 		// refreshToken 은 DB 에 따로 처리하기. 
 		let [user, _] = await User.login(username, password); // user 가 있을수도, 없을수도.. 확인 필요. 
 		let newRefreshToken = new RefreshToken(username, refreshToken);
-		newRefreshToken = await newRefreshToken.save();
+		newRefreshToken = await newRefreshToken.save(); // 여기서 에러 생길 수 있음.
 		res.status(200).json({user: user[0], accessToken: accessToken, refreshToken: refreshToken});
 	} catch (error) { 
 		console.log(error);
-		next(error);
+		// next(error);
+		res.status(403).json({message: "refresh Token exists"})
 	}
 }
 
@@ -75,10 +76,6 @@ exports.regenerateAccessToken = async (req, res, next) => {
 		let {username, refreshToken} = req.body;
 
 		let [validRefreshToken, _] = await RefreshToken.find(username, refreshToken);
-		
-		// 이렇게 확인하면 확인이 안됨. Data 가 없어도 null 이 아님. 
-		// if (validRefreshToken !== null) { // refreshToken 존재 시, accessToken 발급 후 return
-
 		let isEmpty = validRefreshToken.length === 0
 		
 		if (!isEmpty) { // refreshToken 존재 시, accessToken 발급 후 return
@@ -92,6 +89,7 @@ exports.regenerateAccessToken = async (req, res, next) => {
 	} catch (error) { 
 		console.log(error);
 		next(error);
+		// dd
 	}
 }
 

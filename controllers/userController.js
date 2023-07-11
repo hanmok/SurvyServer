@@ -46,12 +46,13 @@ exports.login = (req, res, next) => __awaiter(this, void 0, void 0, function* ()
         // refreshToken 은 DB 에 따로 처리하기. 
         let [user, _] = yield User.login(username, password); // user 가 있을수도, 없을수도.. 확인 필요. 
         let newRefreshToken = new RefreshToken(username, refreshToken);
-        newRefreshToken = yield newRefreshToken.save();
+        newRefreshToken = yield newRefreshToken.save(); // 여기서 에러 생길 수 있음.
         res.status(200).json({ user: user[0], accessToken: accessToken, refreshToken: refreshToken });
     }
     catch (error) {
         console.log(error);
-        next(error);
+        // next(error);
+        res.status(403).json({ message: "refresh Token exists" });
     }
 });
 // Access Token 도 무효화 시키기, 이때, Token 체크 해야함. 
@@ -82,8 +83,6 @@ exports.regenerateAccessToken = (req, res, next) => __awaiter(this, void 0, void
     try {
         let { username, refreshToken } = req.body;
         let [validRefreshToken, _] = yield RefreshToken.find(username, refreshToken);
-        // 이렇게 확인하면 확인이 안됨. Data 가 없어도 null 이 아님. 
-        // if (validRefreshToken !== null) { // refreshToken 존재 시, accessToken 발급 후 return
         let isEmpty = validRefreshToken.length === 0;
         if (!isEmpty) { // refreshToken 존재 시, accessToken 발급 후 return
             let myUser = { name: username };
@@ -98,6 +97,7 @@ exports.regenerateAccessToken = (req, res, next) => __awaiter(this, void 0, void
     catch (error) {
         console.log(error);
         next(error);
+        // dd
     }
 });
 function generateAccessToken(user) {
