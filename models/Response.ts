@@ -30,7 +30,7 @@ class Response {
 				'${this.question_id}',
 				'${this.selectableOption_id}',
 				'${this.user_id}',
-				'${this.survey_id}
+				'${this.survey_id}'
 			)`;
 		// return db.execute(sql);
 		return db.execute(sql);
